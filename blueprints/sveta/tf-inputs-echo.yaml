@@ -17,6 +17,9 @@ grains:
     spec:
       agent:
         name: '{{ inputs.agent_name }}'
+        kubernetes:
+          pod-annotations:
+            - my-annot: sveta
       source:
         store: test-spec2-public
         path: terraform/tf-inputs-echo
