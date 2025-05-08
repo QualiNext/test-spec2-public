@@ -19,7 +19,7 @@ grains:
         name: '{{ inputs.agent_name }}'
         kubernetes:
           pod-annotations:
-            - my-annot: '{{ params.custom_pod_annotation_value }}'
+            - my-annot: '{{ params.custom-pod-annotation-value }}'
       source:
         store: test-spec2-public
         path: terraform/tf-inputs-echo
