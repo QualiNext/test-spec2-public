@@ -1,5 +1,5 @@
 spec_version: 2
-description: Blueprint for nginx helm chart 
+description: Blueprint for nginx helm chart in custom cluster
 
 inputs:
   agent:
@@ -7,6 +7,12 @@ inputs:
   target-namespace:
     type: string
     default: "sveta-test"
+  secret-name:
+    type: string
+    default: "playground-config"
+  destination-context-name:
+    type: string
+    default: "playground-eks"
 
 grains:
   nginx:
@@ -21,8 +27,8 @@ grains:
         kubernetes:
           permissions:
             # secret-namespace is the runner namespace which is the agent's default namespace
-            secret-name: playground-config
-            destination-context-name: playground-eks
+            secret-name: '{{ inputs.secret-name }}'
+            destination-context-name: '{{ inputs.destination-context-name }}'
       target-namespace: '{{ inputs.target-namespace }}'
       commands:
         - dep up helm/nginx-test
