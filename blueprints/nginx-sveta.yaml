@@ -10,6 +10,9 @@ inputs:
   service-type:
     type: string
     default: ClusterIP
+  release-prefix:
+    type: string
+    default: nginx-sveta
 
 grains:
   nginx:
@@ -21,6 +24,7 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       target-namespace: '{{ inputs.target-namespace }}'
+      release: '{{ inputs.release-prefix }}-{{ envId | downcase }}'
       commands:
         - dep up helm/nginx-stripped
       inputs:
