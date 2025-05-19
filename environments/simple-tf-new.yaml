@@ -11,7 +11,7 @@ environment:
 inputs:
   compute_service_name:
     type: agent
-    default: yakir-eks-dev
+    default: eks
     
   tf_input:
     type: string
