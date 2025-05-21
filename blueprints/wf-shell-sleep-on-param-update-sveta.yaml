@@ -5,6 +5,9 @@ workflow:
   scope: env
   triggers:
     - type: manual
+    - type: cron
+      cron: '0 * * * *'
+      overridable: true
     - type: event
       event:
         - Parameter Updates Detected
