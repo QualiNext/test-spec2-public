@@ -5,7 +5,7 @@ environment:
   environment_name: eac-simple-env-2
   description: eac env for testing  1
   owner_email: yakir.l@quali.com
-  state: inactive 
+  state: active 
 
  
 inputs:
