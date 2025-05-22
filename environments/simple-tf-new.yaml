@@ -11,7 +11,7 @@ environment:
 inputs:
   compute_service_name:
     type: agent
-    default: eks
+    default: review1-vido
     
   tf_input:
     type: string
