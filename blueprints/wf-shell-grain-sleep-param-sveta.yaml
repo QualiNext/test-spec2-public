@@ -1,0 +1,22 @@
+spec_version: 2
+description: sleep
+
+workflow:  
+  scope: space
+  triggers:
+    - type: manual
+
+inputs:
+  agent_name:
+    type: agent
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "sleep {{ .params.sleep_param }}"
