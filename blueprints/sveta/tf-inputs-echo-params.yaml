@@ -37,5 +37,5 @@ grains:
       activities:
         deploy:
           commands:
-            - "sleep {{ .params.num_param }}"
+            - "sleep {{ .params.sleep_param }}"
       

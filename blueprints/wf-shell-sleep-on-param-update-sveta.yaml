@@ -15,8 +15,6 @@ workflow:
 inputs:
   agent_name:
     type: agent
-  sleep_secs:
-    type: string
 
 grains:
   sleep:
@@ -27,4 +25,4 @@ grains:
       activities:
         deploy:
           commands:
-            - "sleep {{ .inputs.sleep_secs }}"
+            - "sleep {{ .params.sleep_param }}"
