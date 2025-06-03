@@ -15,6 +15,17 @@ inputs:
     # default: eks-shirel
   sleep_secs:
     type: string
+  file_try:
+    type: 'file'
+    max-size-MB: 50
+    max-files: 5
+    allowed-formats:
+      - 'zip'
+      - 'pdf'
+      - 'png'
+      - 'jpg'
+      - 'rtf'
+      - 'svg'
 
 grains:
   sleep:
