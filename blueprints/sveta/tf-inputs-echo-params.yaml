@@ -38,4 +38,7 @@ grains:
         deploy:
           commands:
             - "sleep {{ .params.sleep_param }}"
+        destroy:
+          commands:
+            - "sleep {{ .params.sleep_param }}"
       
