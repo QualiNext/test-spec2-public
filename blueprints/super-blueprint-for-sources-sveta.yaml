@@ -125,10 +125,10 @@ grains:
         - source: 
             name: workspace_dir1
             store: '{{.inputs.store}}'
-        - source: 
-            name: workspace_dir2
-            store: 'artifactory/{{ .inputs.artifactory_credential }}'
-            path: helm/bla-0.1.0.tgz
+        # - source: 
+        #     name: workspace_dir2
+        #     store: 'artifactory/{{ .inputs.artifactory_credential }}'
+        #     path: helm/bla-0.1.0.tgz
       scripts:
         post-helm-install:
           source:
