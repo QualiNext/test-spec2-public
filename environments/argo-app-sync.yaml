@@ -1,3 +1,5 @@
+spec_version: 2
+
 kind: environment
 environment_name: ArgoCD Multi DBS env
 state: inactive
