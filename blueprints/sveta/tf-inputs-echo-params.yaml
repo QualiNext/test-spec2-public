@@ -22,6 +22,11 @@ grains:
       source:
         store: test-spec2-public
         path: terraform/tf-inputs-echo
+      workspace-directories:
+        - source: 
+            name: workspace_dir1
+            store: test-spec2-public
+            path: '{{ params.workspace-dir-path }}'
       inputs:
         - test_string1: 'ahoi {{ params.param1 }}'
         - test_string2: '{{ params.param2 }}'
