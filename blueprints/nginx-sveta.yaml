@@ -29,3 +29,9 @@ grains:
         - dep up helm/nginx-stripped
       inputs:
         - service.type: '{{.inputs.service-type}}'
+      scripts:
+        post-helm-install:
+          source:
+            store: test-spec2-public
+            path:  scripts/script-with-args.sh
+          arguments: '{{ params.param1 }}'
