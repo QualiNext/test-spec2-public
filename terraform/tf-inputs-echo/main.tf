@@ -3,5 +3,5 @@ terraform {
 }
 
 locals {
-  const1 = "internal constant"
+  const1 = "internal constant1"
 }
