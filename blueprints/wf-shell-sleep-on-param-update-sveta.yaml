@@ -15,6 +15,8 @@ workflow:
 inputs:
   agent_name:
     type: agent
+  message:
+    type: string
 
 grains:
   sleep:
@@ -25,4 +27,5 @@ grains:
       activities:
         deploy:
           commands:
+            - "echo {{ .inputs.message }}"
             - "sleep {{ .params.sleep_param }}"
