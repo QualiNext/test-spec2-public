@@ -5,9 +5,9 @@ workflow:
   scope: env
   triggers:
     - type: manual
-    - type: cron
-      cron: '0 * * * *'
-      overridable: true
+    # - type: cron
+    #   cron: '0 * * * *'
+    #   overridable: true
     - type: event
       event:
         - Parameter Updates Detected
@@ -15,8 +15,8 @@ workflow:
 inputs:
   agent_name:
     type: agent
-  message:
-    type: string
+  # message:
+  #   type: string
 
 grains:
   sleep:
@@ -27,5 +27,5 @@ grains:
       activities:
         deploy:
           commands:
-            - "echo {{ .inputs.message }}"
+            # - "echo {{ .inputs.message }}"
             - "sleep {{ .params.sleep_param }}"
