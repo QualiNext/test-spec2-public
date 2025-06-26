@@ -1,0 +1,36 @@
+spec_version: 2
+description: sleep
+
+workflow:  
+  scope: env
+  triggers:
+    - type: manual
+    - type: event
+      event:
+        - Environment Active With Error
+
+inputs:
+  agent_name:
+    type: agent
+
+grains:
+  sleep:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent_name }}'
+      activities:
+        deploy:
+          commands:
+            - >-
+              curl --request POST \
+              --url {{ .params.torque_server_address }}/api/spaces/{{ .spaceName }}/environments/{{ .bindings.environmentId }}/update_v2 \
+              --header 'Accept: application/json' \
+              --header 'Authorization: Bearer {{ .params.torque_token }}' \
+              --header 'Content-Type: application/json' \
+              --data '{
+              "inputs": {
+                  "should_fail": false
+                },
+                "force": false
+              }'
