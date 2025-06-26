@@ -28,9 +28,4 @@ grains:
               --header 'Accept: application/json' \
               --header 'Authorization: Bearer {{ .params.torque_token }}' \
               --header 'Content-Type: application/json' \
-              --data '{
-              "inputs": {
-                  "should_fail": false
-                },
-                "force": false
-              }'
+              --data '{ "inputs": { "should_fail": false } }'
