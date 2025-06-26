@@ -23,4 +23,4 @@ grains:
         deploy:
           commands:
             - >-
-              curl -X POST --url '{{ .params.torque_server_address }}/api/spaces/{{ .spaceName }}/environments/{{ .bindings.environmentId }}/update_v2' -H 'Authorization: Bearer {{ .params.torque_token }}' -H 'Content-Type: application/json' -d '{ "inputs": { "should_fail": false } }'
+              curl -X POST --url '{{ .params.torque_server_address }}/api/spaces/{{ .spaceName }}/environments/{{ .bindings.environment_id }}/update_v2' -H 'Authorization: Bearer {{ .params.torque_token }}' -H 'Content-Type: application/json' -d '{ "inputs": { "should_fail": false } }'
