@@ -1,0 +1,26 @@
+spec_version: 2
+description: shell that can fail
+
+inputs:
+  agent_name:
+    type: agent
+  should_fail:
+    type: string
+    default: false
+
+grains:
+  can-fail:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      files:
+        - source: test-spec2-public
+          path: scripts/update_env.sh
+      activities:
+        deploy:
+          commands:
+            - name: echo
+              command: "echo 'will fail: {{ .inputs.should_fail }}'"
+            - name: fix
+              command: 'if [ {{ .inputs.should_fail }} = true ]; then source update_env.sh {{ .params.torque_server_address }} {{ .params.torque_token }} {{ .spaceName }} {{ .envId }}; fi'
