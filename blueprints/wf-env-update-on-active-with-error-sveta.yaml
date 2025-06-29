@@ -19,8 +19,12 @@ grains:
     spec:
       agent:
         name: '{{ .inputs.agent_name }}'
+      files:
+        - source: test-spec2-public
+          path: scripts/update_env.sh
       activities:
         deploy:
           commands:
-            - >-
-              curl -X POST --url '{{ .params.torque_server_address }}/api/spaces/{{ .spaceName }}/environments/{{ .bindings.environment_id }}/update_v2' -H 'Authorization: Bearer {{ .params.torque_token }}' -H 'Content-Type: application/json' --data '{ "inputs": { "should_fail": false } }'
+            # - >-
+            #   curl -X POST --url '{{ .params.torque_server_address }}/api/spaces/{{ .spaceName }}/environments/{{ .bindings.environment_id }}/update_v2' -H 'Authorization: Bearer {{ .params.torque_token }}' -H 'Content-Type: application/json' --data '{ "inputs": { "should_fail": false } }'
+            - 'source update_env.sh {{ .params.torque_server_address }} {{ .params.torque_token }} {{ .spaceName }} {{ .bindings.environment_id }}'
