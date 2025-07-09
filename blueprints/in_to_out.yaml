@@ -8,7 +8,7 @@ inputs:
     default: test-spec2-public
   my_input:
     type: string
-    default: hello world
+    default: hi
 
 outputs:
   grain_output:
