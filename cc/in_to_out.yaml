@@ -1,0 +1,30 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  my_store:
+    type: string
+    default: test-spec2-public
+  my_input:
+    type: string
+    default: hi
+
+outputs:
+  grain_output:
+    value: '{{ .grains.my_grain.outputs.my_output }}'
+    quick: true
+
+grains:
+  my_grain:
+    kind: 'terraform'
+    spec:
+      source:
+        store: '{{ .inputs.my_store }}'
+        path: 'terraform/input_to_output'
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - my_input: '{{ .inputs.my_input }}'
+      outputs:
+        - 'my_output'
