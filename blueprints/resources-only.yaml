@@ -2,8 +2,6 @@ spec_version: 2
 description: require resources and output dynamic value
 
 inputs:
-  agent_name:
-    type: agent
   tenant_quantity:
     type: string
     default: 2
