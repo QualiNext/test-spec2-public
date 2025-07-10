@@ -1,0 +1,15 @@
+spec_version: 2
+description: require resources and output dynamic value
+
+inputs:
+  agent_name:
+    type: agent
+  tenant_quantity:
+    type: string
+    default: 2
+
+resources:
+  tenants:
+    selector:
+      type: demo_tenant_type
+      quantity: '{{ .inputs.tenant_quantity }}'
