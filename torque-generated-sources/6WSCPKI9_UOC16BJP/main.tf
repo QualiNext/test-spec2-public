@@ -15,3 +15,4 @@ resource "azurerm_resource_group" "res-0" {
     torque-space-name = "Vido"
   }
 }
+
