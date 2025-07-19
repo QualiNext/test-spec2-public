@@ -8,6 +8,7 @@ inputs:
     default: defaultbob
   compute_service_name:
     type: agent
+
  
 # namespace:
 #   type: string
