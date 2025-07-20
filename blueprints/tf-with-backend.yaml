@@ -19,7 +19,7 @@ grains:
       agent:
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        test_input2: somevlaue
+        - test_input2: somevlaue
       # scripts:
       #   pre-tf-init:
       #     source:
