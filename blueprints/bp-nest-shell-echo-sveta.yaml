@@ -20,7 +20,7 @@ grains:
       inputs:
         - agent_name: '{{.inputs.agent_name}}'
         - input_str: '{{.inputs.tester}}'
-        - test_update: '{{.inputs.tester}}'
+        - test_update: 'wtf'
       outputs:
         - out1
         - output_str
