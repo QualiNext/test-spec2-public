@@ -6,6 +6,9 @@ inputs:
   input_str:
     type: string
     default: some text
+  tester:
+    type: string
+    default: yoooo
 
 grains:
   bp-shell-1:
