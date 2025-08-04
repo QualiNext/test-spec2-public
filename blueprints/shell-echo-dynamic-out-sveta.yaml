@@ -23,6 +23,8 @@ grains:
     spec:
       agent:
         name: '{{.inputs.agent_name}}'
+      inputs:
+        - hi: 'bye'
       activities:
         deploy:
           commands:
