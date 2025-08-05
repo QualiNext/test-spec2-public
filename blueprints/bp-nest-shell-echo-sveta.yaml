@@ -9,6 +9,9 @@ inputs:
   tester:
     type: string
     default: yoooo
+  tester2:
+    type: string
+    default: yoooo
 
 grains:
   bp-shell-1:
