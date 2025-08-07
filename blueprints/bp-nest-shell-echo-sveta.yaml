@@ -12,9 +12,6 @@ inputs:
   tester2:
     type: string
     default: yoooo
-  tester3:
-    type: string
-    default: yoooo
 
 grains:
   bp-shell-1:
@@ -25,7 +22,7 @@ grains:
         store: test-spec2-public
       inputs:
         - agent_name: '{{.inputs.agent_name}}'
-        - input_str: '{{.inputs.tester}}'
+        - input_str: '{{.inputs.tester2}}'
         - test_update: 'testtestvalue'
       outputs:
         - out1
