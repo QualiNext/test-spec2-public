@@ -21,6 +21,7 @@ grains:
         - agent_name: '{{.inputs.agent_name}}'
         - input_str: '{{.inputs.tester}}'
         - test_update: 'testtestvalue'
+        - yo: 'hoooo'
       outputs:
         - out1
         - output_str
