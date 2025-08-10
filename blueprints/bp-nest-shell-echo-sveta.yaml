@@ -39,7 +39,7 @@ grains:
         - out1
         - output_str
 
-  bp-shell-3:
+  bp-shell-4:
     kind: blueprint
     depends-on: bp-shell-1
     spec:
