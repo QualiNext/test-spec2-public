@@ -19,7 +19,7 @@ grains:
         store: test-spec2-public
       inputs:
         - agent_name: '{{.inputs.agent_name}}'
-        - input_str: '{{.inputs.tester2}}'
+        - input_str: '{{.inputs.tester}}'
         - test_update: 'testtestvalue'
       outputs:
         - out1
