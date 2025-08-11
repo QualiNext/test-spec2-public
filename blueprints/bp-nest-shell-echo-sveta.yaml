@@ -22,6 +22,10 @@ outputs:
   outer:
     quick: true
     value: 'outout'
+description: 
+  'i have ruined this bp sorry, yarin'
+instructions:
+  text: 'this is how you should operate this thingy'
 
 grains:
   bp-shell-1:
