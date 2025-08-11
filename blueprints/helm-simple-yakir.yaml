@@ -37,11 +37,11 @@ grains:
 #         path: https://github.com/QualiNext/test-spec2-public.git//helm/nginx-test
       agent:
         name: '{{.inputs.execution_host}}'
+        use-storage: false
       commands:
         - dep up helm/nginx-test
       release: '{{.inputs.release_name}}'
-      target-namespace: '{{.inputs.namespace}}'
-      use-storage: false
+      target-namespace: '{{.inputs.namespace}}'      
       inputsv2:
         - replicaCount: '{{.inputs.replica_count}}'
         - image.debug: 'true'
