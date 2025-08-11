@@ -26,11 +26,6 @@ outputs:
 grains:
   bp-shell-1:
     kind: blueprint
-    env-labels:
-      on-failure:
-        - tomer
-      on-success:
-        - yarin
     spec:
       source:
         path: blueprints/shell-echo-dynamic-out-sveta.yaml
