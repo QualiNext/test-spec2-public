@@ -28,7 +28,7 @@ grains:
     kind: blueprint
     spec:
       source:
-        path: blueprints/shell-simple.yaml
+        path: blueprints/shell-grain-yakir.yaml
         store: test-spec2-public
       inputs:
         - agent_name: '{{.inputs.agent_name}}'
