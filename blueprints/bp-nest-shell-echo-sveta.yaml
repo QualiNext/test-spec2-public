@@ -74,6 +74,7 @@ grains:
       inputs:
         - agent_name: '{{.inputs.agent_name}}'
         - input_str: '{{.grains.bp-shell-1.outputs.out1}}'
+        - spectacular: 'input'
       outputs:
         - out1
         - output_str
