@@ -12,10 +12,16 @@ inputs:
   tester2:
     type: string
     default: moooo
+  havemesomevalue:
+    type: string
+    default: lololol
 outputs:
   out from here:
     quick: true
     value: 'lemme out'
+  outer:
+    quick: true
+    value: 'outout'
 
 grains:
   bp-shell-1:
