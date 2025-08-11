@@ -81,7 +81,7 @@ grains:
 
   bp-shell-5:
     kind: blueprint
-    depends-on: bp-shell-3
+    depends-on: bp-shell-1
     spec:
       source:
         path: blueprints/shell-echo-dynamic-out-sveta.yaml
