@@ -11,7 +11,7 @@ inputs:
     default: yoooo
   tester2:
     type: string
-    default: moooo
+    default: l.g.r
   havemesomevalue:
     type: string
     default: lololol
@@ -49,6 +49,7 @@ grains:
       inputs:
         - agent_name: '{{.inputs.agent_name}}'
         - input_str: '{{.grains.bp-shell-1.outputs.out1}}'
+        - im_new: 'a new input'
       outputs:
         - out1
         - output_str
@@ -67,6 +68,7 @@ grains:
       outputs:
         - out1
         - output_str
+        - new_output
 
   bp-shell-5:
     kind: blueprint
