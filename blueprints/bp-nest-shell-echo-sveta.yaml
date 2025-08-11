@@ -30,7 +30,7 @@ grains:
       on-failure:
         - tomer
       on-success:
-        - yarin:hasvalue
+        - yarin: 'hasvalue'
     spec:
       source:
         path: blueprints/shell-echo-dynamic-out-sveta.yaml
