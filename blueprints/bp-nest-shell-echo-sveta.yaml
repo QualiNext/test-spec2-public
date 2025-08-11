@@ -28,8 +28,13 @@ grains:
     kind: blueprint
     spec:
       source:
-        path: blueprints/shell-grain-yakir.yaml
+        path: blueprints/shell-echo-dynamic-out-sveta.yaml
         store: test-spec2-public
+      inputs:
+        - agent_name: '{{.inputs.agent_name}}'
+        - input_str: '{{.inputs.tester}}'
+        - test_update: 'testtestvalue'
+        - yo: 'hoooo'
       outputs:
         - out1
         - output_str
