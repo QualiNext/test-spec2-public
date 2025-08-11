@@ -28,7 +28,7 @@ grains:
     kind: blueprint
     spec:
       source:
-        path: blueprints/shell-echo-dynamic-out-sveta.yaml
+        path: blueprints/shell-simple.yaml
         store: test-spec2-public
       inputs:
         - agent_name: '{{.inputs.agent_name}}'
