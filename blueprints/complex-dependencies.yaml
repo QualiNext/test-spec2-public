@@ -9,11 +9,9 @@ outputs:
 
 inputs:
   namespace:
-    type: string
-   # default: yakir-agent
+    type: string  
   execution_host:
-    type: agent
-    # default: yakir-eks
+    type: agent    
     description: the name of the execution host to be used
   service_account:
     type: string
