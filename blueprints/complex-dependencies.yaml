@@ -49,7 +49,7 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        path: https://github.com/helm/examples.git//charts/hello-world
 #         store: test-spec2-public
 #         path: helm/nginx-test      
         
@@ -89,7 +89,7 @@ grains:
     depends-on: terraform2
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        path: https://github.com/helm/examples.git//charts/hello-world
       agent:
         name: '{{.inputs.execution_host}}'
         service-account: '{{.inputs.service_account}}'
@@ -103,7 +103,7 @@ grains:
     depends-on: helm2
     spec:
       source:
-        path: https://github.com/open-toolchain/hello-helm.git//chart/hello
+        path: https://github.com/helm/examples.git//charts/hello-world
       agent:
         name: '{{.inputs.execution_host}}'
       commands:
