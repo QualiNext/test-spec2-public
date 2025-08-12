@@ -12,7 +12,7 @@ inputs:
     type: string
     default: yakir-agent
   execution_host:
-    type: string
+    type: agent
     # default: yakir-eks
     description: the name of the execution host to be used
   service_account:
