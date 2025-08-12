@@ -43,7 +43,9 @@ grains:
         path: terraform/simple-tf-module
         store: test-spec2-public
       agent:
-        name: '{{.inputs.execution_host}}'        
+        name: '{{.inputs.execution_host}}'      
+      inputs:
+        - test_input2: some-value
         
   helm1:
     kind: helm
@@ -78,7 +80,9 @@ grains:
         path: terraform/simple-tf-module
         store: test-spec2-public
       agent:
-        name: '{{.inputs.execution_host}}'              
+        name: '{{.inputs.execution_host}}'           
+      inputs:
+        - test_input2: some-val2
         
   helm2:
     kind: helm
