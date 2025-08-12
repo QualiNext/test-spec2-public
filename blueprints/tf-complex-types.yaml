@@ -28,6 +28,9 @@ inputs:
     type: string
     display-style: normal
     description: "object"
+  input_number:
+    type: string
+    default: 2
 
 
 outputs:
@@ -126,7 +129,7 @@ grains:
         - test_map_string2: '{{.inputs.input_map_string_default}}'       
         - test_object:
             key1: ThisIsString
-            key2: 5
+            key2: '{{.inputs.input_number}}'
         - test_liquid: env-id-{{sandboxId}}
       outputs:
         - test_number
