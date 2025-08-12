@@ -10,7 +10,7 @@ outputs:
 inputs:
   namespace:
     type: string
-    default: yakir-agent
+   # default: yakir-agent
   execution_host:
     type: agent
     # default: yakir-eks
@@ -60,7 +60,7 @@ grains:
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'     
+      target-namespace: '{{.inputs.namespace}}'     
       
   terraform2:
     depends-on: terraform1, helm1
@@ -96,7 +96,7 @@ grains:
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'      
+      target-namespace: '{{.inputs.namespace}}'      
   
   helm3:
     kind: helm
@@ -109,5 +109,5 @@ grains:
       commands:
         - dep up chart/hello
       release: '{{.inputs.release_name}}'
-      namespace: '{{.inputs.namespace}}'        
+      target-namespace: '{{.inputs.namespace}}'        
         
