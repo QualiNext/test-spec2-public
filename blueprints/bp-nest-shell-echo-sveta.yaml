@@ -15,6 +15,12 @@ inputs:
   havemesomevalue:
     type: string
     default: lololol
+  morevalue:
+    type: string
+    default: valueiscool
+  interesting:
+    type: string
+    default: scroller
 outputs:
   out from here:
     quick: true
