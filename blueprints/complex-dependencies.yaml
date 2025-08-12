@@ -69,6 +69,8 @@ grains:
         store: test-spec2-public
       agent:
         name: '{{.inputs.execution_host}}'      
+      inputs:
+        - test_input2: some-val2
         
   terraform3:
     depends-on: terraform2
