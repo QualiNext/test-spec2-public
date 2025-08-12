@@ -7,6 +7,8 @@ outputs:
  generic_output:
    value: '{{.inputs.generic_input}}'
 
+
+
 inputs:
   namespace:
     type: string  
