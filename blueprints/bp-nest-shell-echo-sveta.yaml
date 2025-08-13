@@ -20,12 +20,9 @@ inputs:
   morevalue:
     type: string
     default: valueiscool
-  interesting:
-    type: string
-    default: scroller
 outputs:
   out from here:
-    quick: true
+    quick: false
     value: 'lemme out'
     kind: regular
   outer:
@@ -33,9 +30,9 @@ outputs:
     kind: link
     value: 'outout'
 description: 
-  'i have ruined this bp sorry, yarin'
+  'i have ruined this bp AGAIN, sorry, yarin'
 instructions:
-  text: 'this is how you should operate this thingy'
+  text: 'this is how you should operate this thingyzzz'
 
 grains:
   bp-shell-1:
