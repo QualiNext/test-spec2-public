@@ -6,6 +6,7 @@ inputs:
   input_str:
     type: string
     default: some text
+    description: describe me
   tester:
     type: string
     default: yoooo
