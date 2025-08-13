@@ -10,9 +10,6 @@ inputs:
   tester:
     type: string
     default: yoo
-  hello:
-    type: string
-    default: world
 
 outputs:
   out1:
