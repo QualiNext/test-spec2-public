@@ -47,6 +47,8 @@ outputs:
     value: '{{ .grains.second.outputs.test_string_2}}'
   output7:
     value: '{{ .grains.first.outputs.test_string_2}}'
+  output7:
+    value: '{{ .grains.first.outputs}}'
 
 
 grains:
