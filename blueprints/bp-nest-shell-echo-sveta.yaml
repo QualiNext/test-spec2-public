@@ -103,3 +103,4 @@ grains:
       outputs:
         - out1
         - output_str
+        - out_w_us
