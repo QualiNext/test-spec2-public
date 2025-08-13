@@ -27,8 +27,10 @@ outputs:
   out from here:
     quick: true
     value: 'lemme out'
+    kind: regular
   outer:
-    quick: true
+    quick: false
+    kind: link
     value: 'outout'
 description: 
   'i have ruined this bp sorry, yarin'
