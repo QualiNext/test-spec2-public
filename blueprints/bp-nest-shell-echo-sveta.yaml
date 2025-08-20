@@ -32,7 +32,7 @@ outputs:
 description: 
   'i have ruined this bp AGAIN, sorry, yarin'
 instructions:
-  text: 'this is how you should operate thissss thingyzzz'
+  text: 'this is how you should operate this thingy'
 
 grains:
   bp-shell-1:
