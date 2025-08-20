@@ -7,9 +7,6 @@ inputs:
   input_str:
     type: string
     default: some text
-  tester:
-    type: string
-    default: yoo
 
 outputs:
   out1:
