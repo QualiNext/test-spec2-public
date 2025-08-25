@@ -37,7 +37,7 @@ grains:
         store: test-spec2-public
         path: blueprints/blueprint-update-test.yaml      
       inputs:
-        - input1: value-literal        
+        - compute_service_name: '{{.inputs.compute_service_name}}'
       outputs:
         - bp_output1
   nested2:
@@ -47,7 +47,8 @@ grains:
         store: test-spec2-public
         path: blueprints/blueprint-update-test.yaml      
       inputs:
-        - input1: value-literal        
+        - compute_service_name: '{{.inputs.compute_service_name}}'
+        
       outputs:
         - bp_output1
   
