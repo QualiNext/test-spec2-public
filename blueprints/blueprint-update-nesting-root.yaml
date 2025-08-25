@@ -30,7 +30,17 @@ outputs:
     
 
 grains: 
- nested:
+  nested1:
+    kind: blueprint    
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/blueprint-update.test.yaml      
+      inputs:
+        - input1: value-literal        
+      outputs:
+        - bp_output1
+  nested2:
     kind: blueprint    
     spec:
       source:
