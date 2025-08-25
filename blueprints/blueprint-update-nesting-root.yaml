@@ -25,8 +25,8 @@ outputs:
     value: 'http://my-env-{{ sandboxid }}/some/api/new'
     kind: link
     quick: true
-  output4:
-    value: '{{.grains.tf2.outputs.output2}}'    
+  # output4:
+  #   value: '{{.grains..outputs.output2}}'    
     
 
 grains: 
@@ -35,7 +35,7 @@ grains:
     spec:
       source:
         store: test-spec2-public
-        path: blueprints/blueprint-update.test.yaml      
+        path: blueprints/blueprint-update-test.yaml      
       inputs:
         - input1: value-literal        
       outputs:
@@ -45,7 +45,7 @@ grains:
     spec:
       source:
         store: test-spec2-public
-        path: blueprints/blueprint-update.test.yaml      
+        path: blueprints/blueprint-update-test.yaml      
       inputs:
         - input1: value-literal        
       outputs:
