@@ -6,6 +6,9 @@ inputs:
   inputnew:
     type: string
     default: vlabla
+  inputnew2:
+    type: string
+    default: bla2
 
 outputs:
   output1:
