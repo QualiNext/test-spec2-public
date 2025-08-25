@@ -35,8 +35,8 @@ grains:
       agent:        
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - test_input2: someinput
-        - tester: "yo"
+        - test_input2: someinputnew
+        - tester: "yoyo"
       env-vars:
         - VAR1: VAL1
       # tfvars-files:
