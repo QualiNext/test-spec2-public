@@ -86,30 +86,3 @@ grains:
       commands: []
     # The terraform version that will be used to deploy the module
     tf-version: 1.5.3
-  tf4:
-    kind: terraform
-    spec:
-      source:
-        store: test-spec2-public
-        path: terraform/simple-tf-module
-      agent:
-      # The Torque agent that will be used to provision the environment.
-        name: '{{.inputs.compute_service_name}}'
-        # A service account annotated with a role ARN with permissions to run the asset
-        # service-account: <service-account-name>
-        # Will override the default value for Runners isolation
-        # isolated: <boolean>
-      inputs:
-      - test_input2: input2
-      - tester: yo
-      # The environment variables declared in this section will be available during the grain deployment as well as the grain destroy phase
-      # env-vars:
-      # - VAR_NAME: var value
-      env-vars:
-      - VAR1: VAL1
-      outputs:
-      - output2
-      # Helm commands to run before installing the chart
-      commands: []
-    # The terraform version that will be used to deploy the module
-    tf-version: 1.5.3
