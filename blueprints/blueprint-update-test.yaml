@@ -3,6 +3,9 @@ spec_version: 2
 inputs:
   compute_service_name:
     type: agent
+  inputnew:
+    type: string
+    default: vlabla
 
 outputs:
   output1:
