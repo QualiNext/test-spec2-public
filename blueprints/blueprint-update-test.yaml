@@ -14,7 +14,7 @@ outputs:
     kind: link
     quick: true
   output3:
-    value: 'http://my-env-{{ sandboxid }}/some/api'
+    value: 'http://my-env-{{ sandboxid }}/some/api/new'
     kind: link
     quick: true
   output4:
