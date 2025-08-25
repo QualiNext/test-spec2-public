@@ -3,14 +3,9 @@ spec_version: 2
 inputs:
   compute_service_name:
     type: agent
-  inputnew:
+  input1:
     type: string
-    default: vlabla
-  inputnew2:
-    type: string
-    default: bla2
-  input-no-default:
-    type: string
+    default: default-value
 
 outputs:
   output1:
@@ -40,7 +35,7 @@ grains:
       agent:        
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - test_input2: '{{.inputs.input-no-default}}'
+        - test_input2: someinput
         - tester: "yo"
       env-vars:
         - VAR1: VAL1
