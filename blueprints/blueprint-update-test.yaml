@@ -22,7 +22,7 @@ outputs:
     
 
 grains:
- tf1:
+  tf1:
     kind: terraform
     tf-version: 1.5.3
     spec:
