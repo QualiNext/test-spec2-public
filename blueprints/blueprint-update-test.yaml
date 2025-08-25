@@ -48,7 +48,7 @@ grains:
             store: test-spec2-public
             path : scripts/print-env-vars.sh
           arguments: "value"
-  tf1:
+  tf2:
     kind: terraform
     tf-version: 1.5.3
     spec:
