@@ -93,7 +93,27 @@ grains:
       #       store: test-spec2-public
       #       path: terraform/sub-module/values.tfvars
       outputs:
-        - output2    
+        - output2   
+  tf4:
+    kind: terraform
+    tf-version: 1.5.3
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:        
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: "input2"
+        - tester: "yo"
+      env-vars:
+        - VAR1: VAL1
+      # tfvars-files:
+      #   - source:
+      #       store: test-spec2-public
+      #       path: terraform/sub-module/values.tfvars
+      outputs:
+        - output2  
       #     source:
       #       store: test-spec2-public
       #       path : scripts/tomerv_user_script.sh
