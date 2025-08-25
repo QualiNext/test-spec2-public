@@ -1,0 +1,43 @@
+spec_version: 2
+
+inputs:
+  compute_service_name:
+    type: agent
+  inputnew:
+    type: string
+    default: vlabla
+  inputnew2:
+    type: string
+    default: bla2
+  input-no-default:
+    type: string
+
+outputs:
+  output1:
+    value: "http://www.google.com"
+    kind: link
+    quick: true
+  output2:
+    value: '{{.inputs.compute_service_name}}'
+    kind: link
+    quick: true
+  output3:
+    value: 'http://my-env-{{ sandboxid }}/some/api/new'
+    kind: link
+    quick: true
+  output4:
+    value: '{{.grains.tf2.outputs.output2}}'    
+    
+
+grains: 
+ nested:
+    kind: blueprint    
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/blueprint-update.test.yaml      
+      inputs:
+        - input1: value-literal        
+      outputs:
+        - bp_output1
+  
