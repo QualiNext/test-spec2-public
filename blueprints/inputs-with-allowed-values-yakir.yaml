@@ -39,7 +39,8 @@ inputs:
     type: input-source
     source-name: s3-object-json-content-list
     overrides:
-      - object_key: '{{ .inputs.object_key_for_content }}'
+       - object_key: '{{ .params.OVERRIDE_OBJECT_KEY }}'  # contains for_input_sources_small.json    
+    #  - object_key: '{{ .inputs.object_key_for_content }}'
       - filter: '{{ .inputs.filter_for_content }}'
   
 grains:
