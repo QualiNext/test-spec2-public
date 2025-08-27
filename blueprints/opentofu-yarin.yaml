@@ -23,7 +23,7 @@ grains:
     kind: opentofu
     spec:
       source:
-        store: assets
+        store: test-spec2-public
         path: terraform/hello_world
       agent:        
         name: '{{.inputs.host_name}}'
