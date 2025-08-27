@@ -24,7 +24,7 @@ grains:
     spec:
       source:
         store: test-spec2-public
-        path: terraform/hello_world
+        path: terraform/hello-world
       agent:        
         name: '{{.inputs.host_name}}'
         # A service account annotated with a role ARN with permissions to run the asset
