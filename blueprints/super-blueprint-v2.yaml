@@ -18,7 +18,7 @@ outputs:
   terragrunt_bucket_name:
     value: '{{.grains.terragrunt1.outputs.bucket_arn}}'
   shell_output:
-    value: '{{.inputs.generic_input}} {{ .grains.shell.activities.deploy.commands.my_shell_script.outputs.output1 }} {{.inputs.generic_input}}'  
+    value: '{{.inputs.generic_input}} {{ .grains.shell1.activities.deploy.commands.my_shell_script.outputs.output1 }} {{.inputs.generic_input}}'  
 
 inputs:
   namespace:
