@@ -25,6 +25,32 @@ outputs:
     
 
 grains: 
+  tf1:
+    kind: terraform
+    tf-version: 1.5.3
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+      agent:        
+        name: '{{.inputs.compute_service_name}}'
+      inputs:
+        - test_input2: someinputnew
+        - tester: "yoyo"
+      env-vars:
+        - VAR1: VAL1
+      # tfvars-files:
+      #   - source:
+      #       store: test-spec2-public
+      #       path: terraform/sub-module/values.tfvars
+      outputs:
+        - output2
+      scripts: 
+        pre-tf-init:
+          source:
+            store: test-spec2-public
+            path : scripts/print-env-vars.sh
+          arguments: "value"
   tf2:
     kind: terraform
     tf-version: 1.5.3
