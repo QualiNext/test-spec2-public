@@ -4,6 +4,8 @@ description: deploy s3 buckets using terraform and cloudformation
 inputs:
    agent:
      type: agent
+   input1:
+     default: default-val
 
 outputs:
   cfn_bucket:
