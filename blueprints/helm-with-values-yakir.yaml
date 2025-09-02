@@ -8,6 +8,8 @@ inputs:
   release:
     type: string
     default: ""
+  input1:
+    default: default-val
 
 outputs:
   output1:
