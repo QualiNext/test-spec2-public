@@ -1,0 +1,18 @@
+spec_version: 2
+inputs:
+  agent_name:
+    type: 'agent'
+  just_a_string:
+    default: 'some value'
+grains:
+  bp-tf-inputs-echo:
+    kind: 'blueprint'
+    spec:
+      source:
+        store: 'test-spec2-public'
+        path: 'blueprints/tf-inputs-echo.yaml'
+      inputs:
+        - agent_name: '{{ .inputs.agent_name }}'
+        - just_a_string: '{{ .inputs.just_a_string }}'
+      outputs:
+        - 'tf_output'
