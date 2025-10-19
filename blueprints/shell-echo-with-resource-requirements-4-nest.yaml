@@ -25,4 +25,4 @@ grains:
         deploy:
           commands:
             - name: 'echo_cmd'
-              command: 'echo ''{{ .resources.tenants }}'' '
+              command: 'echo ''{{ .resources.tenants | replace: "''", "\''" }}'' '

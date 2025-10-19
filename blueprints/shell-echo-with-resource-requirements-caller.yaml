@@ -17,7 +17,7 @@ outputs:
   my_tenants_str:
     value: '{{ .resources.tenants }}'
   inner_tennats_str:
-    value: '{{ .grains.bp-shell-echo-with-resource-requirements.tenants_str }}'
+    value: '{{ .grains.bp-shell-echo-with-resource-requirements.outputs.tenants_str }}'
 
 grains:
   echo:
