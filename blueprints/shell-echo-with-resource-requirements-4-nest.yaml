@@ -9,7 +9,7 @@ resources:
   tenants:
     selector:
       type: demo_tenant_type
-      quantity: 2
+      quantity: 1
 
 outputs:
   tenants_str:
