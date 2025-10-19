@@ -1,0 +1,43 @@
+spec_version: 2
+
+inputs:
+  agent_name:
+    type: agent
+  tenant_quantity:
+    type: string
+    default: 2
+
+resources:
+  tenants:
+    selector:
+      type: demo_tenant_type
+      quantity: '{{ .inputs.tenant_quantity }}'
+
+outputs:
+  my_tenants_str:
+    value: '{{ .resources.tenants }}'
+  inner_tennats_str:
+    value: '{{ .grains.bp-shell-echo-with-resource-requirements.tenants_str }}'
+
+grains:
+  echo:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - name: 'echo_cmd'
+              command: 'echo ''{{ .resources.tenants }}'' '
+  
+  bp-shell-echo-with-resource-requirements:
+    kind: 'blueprint'
+    spec:
+      source:
+        store: 'test-spec2-public'
+        path: 'blueprints/shell-echo-with-resource-requirements-4-nest.yaml'
+      inputs:
+        - agent_name: '{{ .inputs.agent_name }}'
+      outputs:
+        - 'tenants_str'
