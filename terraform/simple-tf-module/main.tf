@@ -14,6 +14,8 @@ resource "null_resource" "task_log" {
   }
 }
 
+
+
 # resource "null_resource" "task_long" {
 #   provisioner "local-exec" {
 #     command = "for i in {1..3}; do echo waiting; sleep 2; done"
