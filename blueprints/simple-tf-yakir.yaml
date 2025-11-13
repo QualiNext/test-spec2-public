@@ -33,7 +33,7 @@ grains:
       agent:        
         name: '{{.inputs.compute_service_name}}'
       inputs:
-        - test_input2: "input234"
+        - test_input2: "input2345"
         - tester: "yo"
       env-vars:
         - VAR1: VAL1
