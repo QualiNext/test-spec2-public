@@ -4,6 +4,7 @@ inputs:
   compute_service_name:
     type: agent
 
+
 outputs:
   output1:
     value: "http://www.google1.com"
