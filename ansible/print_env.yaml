@@ -4,3 +4,8 @@
   tasks:
     - name: printenv
       ansible.builtin.shell: printenv
+      register: echo_result
+
+    - name: Print stored stdout_lines result
+      debug:
+        msg: "{{ echo_result['stdout_lines'] }}"
