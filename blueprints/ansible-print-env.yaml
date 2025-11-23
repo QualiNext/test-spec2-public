@@ -15,5 +15,6 @@ grains:
       agent:
         name: '{{ .inputs.agent_name }}'
       env-vars:
-        - MY_VAR: 'my value'
+        - MY_VAR: 'my value new'
+        - ARM_USE_OIDC: true
       
