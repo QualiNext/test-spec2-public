@@ -1,0 +1,19 @@
+spec_version: 2
+description: ansible printenv
+
+inputs:
+  agent_name:
+    type: agent
+
+grains:
+  grain_1:
+    kind: ansible
+    spec: 
+      source:
+        store: test-spec2-public
+        path: ansible/print_env.yaml
+      agent:
+        name: '{{ .inputs.agent_name }}'
+      env-vars:
+        - MY_VAR: 'my value'
+      

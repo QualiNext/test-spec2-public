@@ -1,0 +1,6 @@
+- name: Print env vars
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: printenv
+      ansible.builtin.shell: printenv
