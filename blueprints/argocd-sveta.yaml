@@ -4,18 +4,18 @@ description: connect to an existing application on ArgoCD server
 inputs:
   application_name:
     type: string
-  project:
-    type: string
-    default: default
+    default: sveta-nginx-deployment
   agent_name:
     type: agent
+  deployment_engine_name:
+    type: string
 
 grains:
   argo-app:
     kind: argocd
     spec:
+      deployment-engine: '{{.inputs.deployment_engine_name}}'
       agent:
         name: '{{.inputs.agent_name}}'
       mode: data
-      project: '{{.inputs.project}}'
       application: '{{.inputs.application_name}}'
