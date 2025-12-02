@@ -4,7 +4,23 @@ description: output intput
 inputs:
   input1:
     type: string
+    default: nothing1
+  input2:
+    type: string
+    default: nothing2
+  input3:
+    type: string
+    default: nothing3
+  input4:
+    type: string
+    default: nothing4
 
 outputs:
   output1:
     value: '{{ .inputs.input1 }}'
+  output2:
+    value: '{{ .inputs.input2 }}'
+  output3:
+    value: '{{ .inputs.input3 }}'
+  output4:
+    value: '{{ .inputs.input4 }}'
