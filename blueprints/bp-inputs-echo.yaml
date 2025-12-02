@@ -1,0 +1,10 @@
+spec_version: 2
+description: output intput
+
+inputs:
+  input1:
+    type: string
+
+outputs:
+  output1:
+    value: '{{ .inputs.input1 }}'
