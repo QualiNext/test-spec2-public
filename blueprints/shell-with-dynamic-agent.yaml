@@ -1,0 +1,58 @@
+spec_version: 2
+description: shell using dynamic agent
+inputs:
+  agent_name_to_output:
+    type: string
+  input_str:
+    type: string
+    default: some text
+  runner_namespace:
+    type: string
+  runner_sa:
+    type: string
+    default: default
+  pod-annotation-value:
+    type: string
+outputs:
+  now:
+    value: '{{ "now" | date: "%H:%m:%s" }}'
+  output_str:
+    value: '{{ .inputs.input_str }}'
+grains:
+  agent-creator:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/bp-inputs-echo.yaml
+      inputs:
+        - input1: '{{ .inputs.agent_name_to_output }}'
+        - input2: '{{ .inputs.runner_namespace }}'
+        - input3: '{{ .inputs.runner_sa }}'
+      outputs:
+        - output1
+        - output2
+        - output3
+  shell_g:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .grains.agent-creator.outputs.output1 }}'
+        isolated: false
+        runner-namespace: '{{ .grains.agent-creator.outputs.output2 }}'
+        service-account: '{{ .grains.agent-creator.outputs.output3 }}'
+        kubernetes:
+          pod-labels:
+            - my_label: abc
+          pod-annotations:
+            - my-annot: '{{ .inputs.pod-annotation-value }}'
+      activities:
+        deploy:
+          commands:
+            - name: echo_cmd
+              command: echo {{ .inputs.input_str }}
+        destroy:
+          commands:
+            - echo bye {{ .inputs.input_str }}
+      inputs: []
+    depends-on: agent-creator
