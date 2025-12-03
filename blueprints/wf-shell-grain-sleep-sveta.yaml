@@ -15,6 +15,7 @@ inputs:
     # default: eks-shirel
   sleep_secs:
     type: string
+    default: 1
   # file_try:
   #   type: 'file'
   #   max-size-MB: 50
