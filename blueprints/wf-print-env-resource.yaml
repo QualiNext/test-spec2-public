@@ -1,0 +1,25 @@
+spec_version: 2
+
+workflow:
+  scope: env_resource
+  # resource-types: aws_instance
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '*/5 * * * *'
+      overridable: true
+
+inputs:
+  agent_name:
+    type: agent
+
+grains:
+  echo:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - "echo '{{ .bindings.grain_path }}, {{ .bindings.resource_id }}'"
