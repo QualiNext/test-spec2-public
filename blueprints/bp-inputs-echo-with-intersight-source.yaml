@@ -5,6 +5,7 @@ inputs:
   server:
     type: input-source
     source-name: servers
+    style: multi-select
 
 outputs:
   server:
