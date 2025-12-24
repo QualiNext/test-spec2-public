@@ -8,4 +8,4 @@ inputs:
 
 outputs:
   server:
-    value: '{{ .inputs.input1 }}'
+    value: '{{ .inputs.server }}'
