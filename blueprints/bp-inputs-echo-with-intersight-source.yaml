@@ -2,11 +2,27 @@ spec_version: 2
 description: output intput
 
 inputs:
+  credential:
+    type: credentials
+
   server:
     type: input-source
     source-name: servers
+    depends-on: credential
     style: multi-select
+    # overrides:
+    #   - credential_name: '{{ .inputs.credential }}'
+    #   - filter_query: ''
+  
+  network:
+    type: input-source
+    source-name: servers
+    depends-on: credential
+    overrides:
+      - path: "/api/v1/network/ElementSummaries"
 
 outputs:
   server:
     value: '{{ .inputs.server }}'
+  network:
+    value: '{{ .inputs.network}}'
