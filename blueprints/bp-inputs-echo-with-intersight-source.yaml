@@ -12,17 +12,17 @@ inputs:
     style: multi-select
     # overrides:
     #   - credential_name: '{{ .inputs.credential }}'
-    #   - filter_query: ''
   
-  network:
+  vm:
     type: input-source
     source-name: servers
     depends-on: credential
     overrides:
-      - path: "/api/v1/network/ElementSummaries"
+      - path: "/api/v1/search/SearchItems"
+      - filter_query: 'IndexMotypes eq virtualization.BaseVirtualMachine'
 
 outputs:
   server:
     value: '{{ .inputs.server }}'
-  network:
-    value: '{{ .inputs.network}}'
+  vm:
+    value: '{{ .inputs.vm}}'
