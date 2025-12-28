@@ -10,8 +10,8 @@ inputs:
     source-name: servers
     depends-on: credential
     style: multi-select
-    # overrides:
-    #   - credential_name: '{{ .inputs.credential }}'
+    overrides:
+      - credential: '{{ .inputs.credential }}'
   
   vm:
     type: input-source
