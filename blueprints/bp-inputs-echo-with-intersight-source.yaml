@@ -22,7 +22,7 @@ inputs:
 
   switch:
     type: input-source
-    source-name: servers
+    source-name: bad-creds
     depends-on: credential
     overrides:
       - filter_query: '(ObjectType eq network.Element) and (SwitchType eq ''NexusDevice'')'
