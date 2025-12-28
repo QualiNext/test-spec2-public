@@ -18,7 +18,6 @@ inputs:
     source-name: servers
     depends-on: credential
     overrides:
-      - path: "/api/v1/search/SearchItems"
       - filter_query: '(IndexMotypes eq virtualization.BaseVirtualMachine) and (IsTemplate ne ''true'')'
 
 outputs:
