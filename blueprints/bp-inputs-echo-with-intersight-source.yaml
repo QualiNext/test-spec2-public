@@ -29,6 +29,7 @@ inputs:
       - select_query: 'Name,RegisteredDevice'
       - expand_query: 'RegisteredDevice'
       - display_json_path: '$.Results[*].RegisteredDevice.DeviceHostname[0]'
+      - credential: '{{ .inputs.credential }}'
 
 outputs:
   server:
