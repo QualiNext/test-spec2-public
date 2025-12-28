@@ -20,8 +20,20 @@ inputs:
     overrides:
       - filter_query: '(IndexMotypes eq virtualization.BaseVirtualMachine) and (IsTemplate ne ''true'')'
 
+  switch:
+    type: input-source
+    source-name: servers
+    depends-on: credential
+    overrides:
+      - filter_query: '(ObjectType eq network.Element) and (SwitchType eq ''NexusDevice'')'
+      - select_query: 'Name,RegisteredDevice'
+      - expand_query: 'RegisteredDevice'
+      - display_json_path: '$.Results[*].RegisteredDevice.DeviceHostname[0]'
+
 outputs:
   server:
     value: '{{ .inputs.server }}'
   vm:
     value: '{{ .inputs.vm}}'
+  switch:
+    value: '{{ .inputs.switch}}'
