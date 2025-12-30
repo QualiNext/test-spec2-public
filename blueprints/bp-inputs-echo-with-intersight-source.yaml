@@ -7,7 +7,7 @@ inputs:
 
   server:
     type: input-source
-    source-name: servers
+    source-name: generic-intersight-resources  # returns servers by default
     depends-on: credential
     style: multi-select
     overrides:
@@ -15,7 +15,7 @@ inputs:
   
   vm:
     type: input-source
-    source-name: servers
+    source-name: generic-intersight-resources
     depends-on: credential
     overrides:
       - filter_query: '(IndexMotypes eq virtualization.BaseVirtualMachine) and (IsTemplate ne ''true'')'
