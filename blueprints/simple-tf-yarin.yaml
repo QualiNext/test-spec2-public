@@ -6,10 +6,6 @@ inputs:
 
 
 outputs:
-  output1:
-    value: "http://www.google1.com"
-    kind: link
-    quick: true
   output2:
     value: '{{.inputs.compute_service_name}}'
     kind: link
