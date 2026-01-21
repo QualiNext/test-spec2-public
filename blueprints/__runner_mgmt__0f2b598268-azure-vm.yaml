@@ -23,6 +23,7 @@ inputs:
     display-style: normal     
 
 
+
 outputs:
   vm1_name:
     value: '{{.grains.vm1.outputs.vm_id}}'
