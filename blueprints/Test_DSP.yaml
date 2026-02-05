@@ -1,0 +1,41 @@
+spec_version: 2
+inputs:
+  Install DSP instance:
+    type: 'string'
+    default: 'Yes'
+    allowed-values:
+      - 'Yes'
+      - 'No'
+    description: 'Set to ''yes'' to install DSP, ''no'' to install manually'
+  Select installed DSP Branch:
+    type: 'parameter'
+    depends-on: 'Install DSP instance'
+    parameter-name: 'DSP_branches_offer_{{ .inputs.[\"Install DSP instance\"] }}'
+    description: 'Select the DSP version to be installed if the option ''yes'' was chosen for ''Install DSP instance'' '
+  Select DSP version:
+    type: 'parameter'
+    depends-on: 'Select installed DSP Branch'
+    parameter-name: 'DSP_{{ .inputs.[\"Select installed DSP Branch\"] }}_versions'
+    description: 'Set to ''yes'' to install DSP, ''no'' to install manually'
+  (Optional)DSP_build_number:
+    type: 'string'
+    default: ' '
+    description: 'Please specify build number in the following format X.X.XXXXX.XXXXX(e.g 5.0.20316.20550)'
+  Add IAS instance:
+    type: 'string'
+    default: 'Yes'
+    allowed-values:
+      - 'Yes'
+      - 'No'
+    description: 'Add an IAS instance to the environment'
+  Select IAS version:
+    type: 'parameter'
+    depends-on: 'Add IAS instance'
+    parameter-name: 'IAS_versions_{{ .inputs.[\"Add IAS instance\"] }}'
+    description: 'Selects the IAS version to be installed if the option ''yes'' was chosen for ''Add IAS instance'' '
+  IAS instance for multiforest:
+    type: 'parameter'
+    default: 'No'        
+    depends-on: 'Add IAS instance'
+    parameter-name: 'IAS_Instance_{{ .inputs.[\"Add IAS instance\"] }}'
+    description: 'Sets the vm size for IAS VM. Choosing ''yes'' will create a 8CPU/32GB RAM VM, ''no'' will create a 4CPU/16GB RAM VM'
