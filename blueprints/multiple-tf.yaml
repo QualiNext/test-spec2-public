@@ -12,7 +12,7 @@ inputs:
   DB Size:
     type: string
     default: "small"
-    description: "The instance type of the RDS instance. Small, medium, or large."
+    description: "The instance type of the RDS instance. Small, medium, or large. abc"
     allowed-values: ["small", "medium", "large"]
   DB Engine Version:
     type: string
