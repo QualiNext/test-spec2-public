@@ -4,6 +4,9 @@ description: require resources and output dynamic value
 inputs:
   agent_name:
     type: agent
+  tenant_type:
+    type: string
+    default: demo_tenant_type
   tenant_quantity:
     type: string
     default: 2
@@ -11,7 +14,7 @@ inputs:
 resources:
   tenants:
     selector:
-      type: demo_tenant_type
+      type: '{{ .inputs.tenant_type }}'
       quantity: '{{ .inputs.tenant_quantity }}'
 
 outputs:
