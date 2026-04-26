@@ -149,7 +149,7 @@ grains:
               ansible_connection: local
               
   terraform3:
-    depends-on: ansible1
+    depends-on: ansible1, terraform1
     kind: terraform
     spec:
       source:
