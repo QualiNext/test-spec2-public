@@ -149,7 +149,7 @@ grains:
               ansible_connection: local
               
   terraform3:
-    depends-on: ansible1, terraform1
+    depends-on: ansible1
     kind: terraform
     spec:
       source:
@@ -224,7 +224,7 @@ grains:
             - testoutput
 
   opentofu1:
-    depends-on: helm3
+    depends-on: helm3, terraform1
     kind: opentofu
     spec:
       source:
