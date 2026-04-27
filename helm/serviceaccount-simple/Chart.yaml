@@ -1,0 +1,6 @@
+apiVersion: v2
+name: serviceaccount-simple
+description: A minimal chart that creates a single ServiceAccount in the release namespace
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

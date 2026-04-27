@@ -1,0 +1,4 @@
+serviceAccount:
+  name: default-sa
+  automountServiceAccountToken: true
+  annotations: {}
