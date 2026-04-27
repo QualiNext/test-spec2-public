@@ -121,6 +121,7 @@ grains:
         store: test-spec2-public
         path: blueprints/bp-inputs-echo.yaml
       inputs:
+        - agent: '{{ .inputs.agent }}'
         - input1: '{{ .grains.skip_tf_noise.outputs.test_string1 }}'
         - input2: '{{ .grains.skip_tf_noise.outputs.test_string2 }}'
         - input3: 'skip-branch'
@@ -164,6 +165,7 @@ grains:
         store: test-spec2-public
         path: blueprints/bp-inputs-echo.yaml
       inputs:
+        - agent: '{{ .inputs.agent }}'
         - input1: '{{ .grains.tg_bridge.outputs.test_string1 }}'
         - input2: '{{ .grains.tg_bridge.outputs.test_string2 }}'
         - input3: '{{ .inputs.namespace }}'

@@ -2,6 +2,8 @@ spec_version: 2
 description: output intput
 
 inputs:
+  agent:
+    type: agent
   input1:
     type: string
     default: nothing1
@@ -30,6 +32,8 @@ grains:
       source:
         store: test-spec2-public
         path: terraform/tf-inputs-echo
+      agent:
+        name: '{{ .inputs.agent }}'
       inputs:
         - test_string1: '{{ .inputs.input1 }}'
         - test_string2: '{{ .inputs.input2 }}'
@@ -45,6 +49,8 @@ grains:
       source:
         store: test-spec2-public
         path: terraform/tf-inputs-echo
+      agent:
+        name: '{{ .inputs.agent }}'
       inputs:
         - test_string1: '{{ .grains.echo_stage_1.outputs.test_string1 }}-{{ .inputs.input3 }}'
         - test_string2: '{{ .grains.echo_stage_1.outputs.test_string2 }}'
@@ -61,6 +67,8 @@ grains:
       source:
         store: test-spec2-public
         path: terraform/tf-inputs-echo
+      agent:
+        name: '{{ .inputs.agent }}'
       inputs:
         - test_string1: '{{ .grains.echo_stage_1.outputs.test_string1 }}-{{ .inputs.input3 }}'
         - test_string2: '{{ .grains.echo_stage_skip.outputs.test_string2 }}'
