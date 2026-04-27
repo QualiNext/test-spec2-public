@@ -20,7 +20,7 @@ inputs:
     default: 'hello-complex-flow'
   namespace:
     type: 'string'
-    default: 'grain-flow-test'
+    default: 'yakir-test'
 
 outputs:
   main_tf_string:
@@ -76,13 +76,13 @@ grains:
       namespace: '{{ .inputs.namespace }}'
       source:
         store: test-spec2-public
-        path: helm/namespace
+        path: helm/serviceaccount-simple
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-        - namespace.name: '{{ .inputs.namespace }}'
-        - serviceAccount1.name: 'sa-{{ .grains.tg_bridge.outputs.test_const }}'
-        - serviceAccount2.name: 'sa2-{{ .grains.tg_bridge.outputs.test_const }}'
+        - serviceAccount.name: '{{ sandboxid | downcase }}-main-sa'
+        - serviceAccount.annotations.flow-source: '{{ .grains.tg_bridge.outputs.test_const }}'
+        - serviceAccount.automountServiceAccountToken: true
     depends-on: tg_bridge
 
   k8s_config:
@@ -168,13 +168,13 @@ grains:
       namespace: '{{ .inputs.namespace }}'
       source:
         store: test-spec2-public
-        path: helm/namespace
+        path: helm/serviceaccount-simple
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-        - namespace.name: '{{ .inputs.namespace }}'
-        - serviceAccount1.name: 'skip-sa-1'
-        - serviceAccount2.name: 'skip-sa-2'
+        - serviceAccount.name: '{{ sandboxid | downcase }}-skip-shadow-sa'
+        - serviceAccount.annotations.flow-source: 'skip-branch'
+        - serviceAccount.automountServiceAccountToken: false
     depends-on: tg_bridge
 
   skip_shell_cleanup:
