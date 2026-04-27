@@ -21,6 +21,12 @@ inputs:
   namespace:
     type: 'string'
     default: 'yakir-test'
+  should:
+    type: string
+    allowed-values:
+      - 'yes'
+      - 'no'
+    description: should run the grain (yes/no)
 
 outputs:
   main_tf_string:
@@ -98,6 +104,7 @@ grains:
   
   skip_tf_noise:
     kind: terraform
+    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
     spec:
       source:
         store: test-spec2-public
@@ -116,6 +123,7 @@ grains:
 
   skip_blueprint_branch:
     kind: blueprint
+    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
     spec:
       source:
         store: test-spec2-public
@@ -133,6 +141,7 @@ grains:
 
   skip_helm_shadow:
     kind: helm
+    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
     spec:
       namespace: '{{ .inputs.namespace }}'
       source:
@@ -148,6 +157,7 @@ grains:
 
   skip_shell_cleanup:
     kind: shell
+    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
     spec:
       agent:
         name: '{{ .inputs.agent }}'
@@ -155,7 +165,10 @@ grains:
         deploy:
           commands:
             - name: skipped_cleanup
-              command: 'echo "skip cleanup branch"'
+              command: 'export output1="skip-cleanup-done"; export output2="{{ .grains.skip_blueprint_branch.outputs.grain_output1 }}"; echo "skip cleanup branch"'
+              outputs:
+                - output1
+                - output2
     depends-on: skip_blueprint_branch
 
   bp_bridge:
@@ -166,8 +179,8 @@ grains:
         path: blueprints/bp-inputs-echo.yaml
       inputs:
         - agent: '{{ .inputs.agent }}'
-        - input1: '{{ .grains.tg_bridge.outputs.test_string1 }}'
-        - input2: '{{ .grains.tg_bridge.outputs.test_string2 }}'
+        - input1: '{{ .grains.tg_bridge.outputs.test_string1 }}'        
+        - input2: '{{ .grains.skip_shell_cleanup.activities.deploy.commands.skipped_cleanup.outputs.output1 }}'
         - input3: '{{ .inputs.namespace }}'
       outputs:
         - output1

@@ -45,6 +45,7 @@ grains:
 
   echo_stage_skip:
     kind: terraform
+    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
     spec:
       source:
         store: test-spec2-public
