@@ -95,40 +95,7 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
     depends-on: helm_namespace
-
-  bp_bridge:
-    kind: blueprint
-    spec:
-      source:
-        store: test-spec2-public
-        path: blueprints/bp-inputs-echo.yaml
-      inputs:
-        - input1: '{{ .grains.tg_bridge.outputs.test_string1 }}'
-        - input2: '{{ .grains.tg_bridge.outputs.test_string2 }}'
-        - input3: '{{ .inputs.namespace }}'
-      outputs:
-        - output1
-        - output2
-        - output3
-    depends-on: tg_bridge, k8s_config
-
-  shell_report:
-    kind: shell
-    spec:
-      agent:
-        name: '{{ .inputs.agent }}'
-      files:
-        - source: test-spec2-public
-          path: scripts/echo.sh
-      activities:
-        deploy:
-          commands:
-            - name: report_flow
-              command: 'echo "bp={{ .grains.bp_bridge.outputs.output1 }} ns={{ .grains.bp_bridge.outputs.output3 }} const={{ .grains.tg_bridge.outputs.test_const }}"'
-            - name: run_script
-              command: './echo.sh'
-    depends-on: bp_bridge, helm_namespace
-
+  
   skip_tf_noise:
     kind: terraform
     spec:
@@ -188,3 +155,36 @@ grains:
             - name: skipped_cleanup
               command: 'echo "skip cleanup branch"'
     depends-on: skip_blueprint_branch
+
+  bp_bridge:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/bp-inputs-echo.yaml
+      inputs:
+        - input1: '{{ .grains.tg_bridge.outputs.test_string1 }}'
+        - input2: '{{ .grains.tg_bridge.outputs.test_string2 }}'
+        - input3: '{{ .inputs.namespace }}'
+      outputs:
+        - output1
+        - output2
+        - output3
+    depends-on: skip_shell_cleanup, k8s_config
+
+  shell_report:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: test-spec2-public
+          path: scripts/echo.sh
+      activities:
+        deploy:
+          commands:
+            - name: report_flow
+              command: 'echo "bp={{ .grains.bp_bridge.outputs.output1 }} ns={{ .grains.bp_bridge.outputs.output3 }} const={{ .grains.tg_bridge.outputs.test_const }}"'
+            - name: run_script
+              command: './echo.sh'
+    depends-on: bp_bridge, helm_namespace
