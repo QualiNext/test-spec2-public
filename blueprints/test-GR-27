@@ -1,0 +1,45 @@
+spec_version: 2-preview
+inputs:
+  Application Version:
+    description: Version of the robotShop micorservices application
+    default: 0.4.3
+    type: string
+  compute_service_name:
+    default: eks
+    type: agent
+  DB Engine Version:
+    description: Version of RDS MySQL DB Engine. Default is 5.7
+    default: 8.0.26
+    type: string
+  DB Size:
+    description: The instance type of the RDS instance. Small, medium, or large. abc
+    allowed-values:
+      - small
+      - medium
+      - large
+    default: small
+    type: string
+  env_test:
+    description: environment variable test
+    default: val1
+    type: string
+outputs:
+  hello-world:
+    value: '{{ .grains.first.outputs.output2 }} {{ "now" | date: "%H:%m:%s" }}'
+grains:
+  first:
+    kind: terraform
+    spec:
+      inputs:
+        - test: 1-{{.inputs.env_test}}-2
+        - test_input2: 1-{{.inputs.env_test}}-3
+      outputs:
+        - output2
+      agent:
+        name: '{{.inputs.compute_service_name}}'
+      env-vars:
+        - env1: '{{ .inputs.env_test }}'
+      source:
+        path: terraform/simple-tf-module
+        store: test-spec2-public
+  second:
