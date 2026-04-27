@@ -63,7 +63,7 @@ grains:
         - test_input2: '{{ .grains.a.outputs.test_input2 }}'
       outputs:
         - test_input2
-    depends-on: 'skip2'
+    depends-on: 'skip1'
   c:
     kind: 'terraform'
     spec:
