@@ -13,3 +13,7 @@ terraform {
 output "hello_world" {
   value = "Hello, World!"
 }
+
+output "test" {
+  value = "test 1"
+}
