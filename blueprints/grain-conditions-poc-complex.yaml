@@ -28,7 +28,7 @@ outputs:
   bridge_const:
     value: '{{ .grains.tg_bridge.outputs.test_const }}'
   nested_bp_output:
-    value: '{{ .grains.bp_bridge.outputs.output1 }}'
+    value: '{{ .grains.bp_bridge.outputs.grain_output1 }}'
 
 grains:
   tf_seed:
@@ -126,7 +126,8 @@ grains:
         - input3: 'skip-branch'
       outputs:
         - output1
-        - output2
+        - grain_output1
+        - grain_output2
     depends-on: skip_tf_noise
 
   skip_helm_shadow:
@@ -168,8 +169,8 @@ grains:
         - input3: '{{ .inputs.namespace }}'
       outputs:
         - output1
-        - output2
-        - output3
+        - grain_output1
+        - grain_output2
     depends-on: skip_shell_cleanup, k8s_config
 
   shell_report:
@@ -184,7 +185,7 @@ grains:
         deploy:
           commands:
             - name: report_flow
-              command: 'echo "bp={{ .grains.bp_bridge.outputs.output1 }} ns={{ .grains.bp_bridge.outputs.output3 }} const={{ .grains.tg_bridge.outputs.test_const }}"'
+              command: 'echo "bp1={{ .grains.bp_bridge.outputs.grain_output1 }} bp2={{ .grains.bp_bridge.outputs.grain_output2 }} const={{ .grains.tg_bridge.outputs.test_const }}"'
             - name: run_script
               command: './echo.sh'
     depends-on: bp_bridge, helm_namespace

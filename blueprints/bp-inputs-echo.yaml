@@ -18,9 +18,55 @@ inputs:
 outputs:
   output1:
     value: '{{ .inputs.input1 }}'
-  output2:
-    value: '{{ .inputs.input2 }}'
-  output3:
-    value: '{{ .inputs.input3 }}'
-  output4:
-    value: '{{ .inputs.input4 }}'
+  grain_output1:
+    value: '{{ .grains.echo_stage_2.outputs.test_string1 }}'
+  grain_output2:
+    value: '{{ .grains.echo_stage_2.outputs.test_string2 }}'
+
+grains:
+  echo_stage_1:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      inputs:
+        - test_string1: '{{ .inputs.input1 }}'
+        - test_string2: '{{ .inputs.input2 }}'
+        - test_number: 1
+        - test_bool: true
+      outputs:
+        - test_string1
+        - test_string2
+
+  echo_stage_skip:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      inputs:
+        - test_string1: '{{ .grains.echo_stage_1.outputs.test_string1 }}-{{ .inputs.input3 }}'
+        - test_string2: '{{ .grains.echo_stage_1.outputs.test_string2 }}'
+        - test_number: 2
+        - test_bool: false
+      outputs:
+        - test_string1
+        - test_string2
+    depends-on: echo_stage_1
+
+  echo_stage_2:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      inputs:
+        - test_string1: '{{ .grains.echo_stage_1.outputs.test_string1 }}-{{ .inputs.input3 }}'
+        - test_string2: '{{ .grains.echo_stage_skip.outputs.test_string2 }}'
+        - test_number: 2
+        - test_bool: false
+      outputs:
+        - test_string1
+        - test_string2
+    depends-on: echo_stage_skip
