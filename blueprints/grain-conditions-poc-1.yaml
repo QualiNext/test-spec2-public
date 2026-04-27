@@ -1,0 +1,79 @@
+spec_version: 2
+description: 'Torque IAC asset'
+inputs:
+  in:
+    type: 'string'
+    description: 'The value to be output'
+  agent:
+    type: 'agent'
+outputs:
+  input-as-output_out:
+    value: '{{ .grains.c.outputs.test_input2 }}'
+    quick: true
+grains:
+  a:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'iac-samples'
+        path: terraform/simple-tf-module
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars: []
+      version: '1.5.5'
+      inputs:
+        - test_input2: '{{ .inputs.in }}'
+      outputs:
+        - test_input2
+  b1:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'iac-samples'
+        path: terraform/simple-tf-module
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_input2: '{{ .grains.a.outputs.test_input2 }}'
+      outputs:
+        - test_input2
+    depends-on: 'a'
+  skip1:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'iac-samples'
+        path: terraform/simple-tf-module
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_input2: '{{ .grains.a.outputs.test_input2 }}'
+      outputs:
+        - test_input2
+    depends-on: 'a'
+  skip2:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'iac-samples'
+        path: terraform/simple-tf-module
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_input2: '{{ .grains.a.outputs.test_input2 }}'
+      outputs:
+        - test_input2
+    depends-on: 'skip2'
+  c:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'iac-samples'
+        path: terraform/simple-tf-module
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_input2: '{{ .grains.a.outputs.test_input2 }}-{{ .grains.skip2.outputs.test_input2 }}'
+      outputs:
+        - test_input2
+    depends-on: b1, skip2
