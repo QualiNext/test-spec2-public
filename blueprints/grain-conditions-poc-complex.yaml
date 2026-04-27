@@ -1,0 +1,190 @@
+# Complex dependency/data-flow test blueprint
+# 2D flow graph (depends-on):
+#
+#                                           -> skip_helm_shadow (skip)
+#                                         /
+# tf_seed -> tg_bridge -> helm_namespace -> k8s_config
+#    |            \                             \
+#    |             -> bp_bridge -----------------> shell_report
+#    |
+#    -> skip_tf_noise (skip) -> skip_blueprint_branch (skip) -> skip_shell_cleanup (skip)
+
+spec_version: 2
+description: 'Complex grain dependency and data-flow test with skip branches'
+
+inputs:
+  agent:
+    type: 'agent'
+  message:
+    type: 'string'
+    default: 'hello-complex-flow'
+  namespace:
+    type: 'string'
+    default: 'grain-flow-test'
+
+outputs:
+  main_tf_string:
+    value: '{{ .grains.tf_seed.outputs.test_string1 }}'
+  bridge_const:
+    value: '{{ .grains.tg_bridge.outputs.test_const }}'
+  nested_bp_output:
+    value: '{{ .grains.bp_bridge.outputs.output1 }}'
+
+grains:
+  tf_seed:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_string1: '{{ .inputs.message }}'
+        - test_string2: '{{ .inputs.namespace }}'
+        - test_number: 7
+        - test_bool: true
+      outputs:
+        - test_string1
+        - test_string2
+        - test_const
+
+  tg_bridge:
+    kind: terragrunt
+    spec:
+      source:
+        store: test-spec2-public
+        path: terragrunt/simple-input-echo
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars:
+        - TG_STATE_KEY_NAME: '{{ sandboxid | downcase }}-grain-poc-complex'
+      inputs:
+        - test_string1: '{{ .grains.tf_seed.outputs.test_string1 }}-tg'
+        - test_string2: '{{ .grains.tf_seed.outputs.test_string2 }}'
+        - test_number: 11
+        - test_bool: true
+      outputs:
+        - test_string1
+        - test_string2
+        - test_const
+    depends-on: tf_seed
+
+  helm_namespace:
+    kind: helm
+    spec:
+      namespace: '{{ .inputs.namespace }}'
+      source:
+        store: test-spec2-public
+        path: helm/namespace
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - namespace.name: '{{ .inputs.namespace }}'
+        - serviceAccount1.name: 'sa-{{ .grains.tg_bridge.outputs.test_const }}'
+        - serviceAccount2.name: 'sa2-{{ .grains.tg_bridge.outputs.test_const }}'
+    depends-on: tg_bridge
+
+  k8s_config:
+    kind: kubernetes
+    spec:
+      source:
+        store: test-spec2-public
+        path: manifests/simple-configmap/configmap.yaml
+      namespace: '{{ .inputs.namespace }}'
+      agent:
+        name: '{{ .inputs.agent }}'
+    depends-on: helm_namespace
+
+  bp_bridge:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/bp-inputs-echo.yaml
+      inputs:
+        - input1: '{{ .grains.tg_bridge.outputs.test_string1 }}'
+        - input2: '{{ .grains.tg_bridge.outputs.test_string2 }}'
+        - input3: '{{ .inputs.namespace }}'
+      outputs:
+        - output1
+        - output2
+        - output3
+    depends-on: tg_bridge, k8s_config
+
+  shell_report:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: test-spec2-public
+          path: scripts/echo.sh
+      activities:
+        deploy:
+          commands:
+            - name: report_flow
+              command: 'echo "bp={{ .grains.bp_bridge.outputs.output1 }} ns={{ .grains.bp_bridge.outputs.output3 }} const={{ .grains.tg_bridge.outputs.test_const }}"'
+            - name: run_script
+              command: './echo.sh'
+    depends-on: bp_bridge, helm_namespace
+
+  skip_tf_noise:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/tf-inputs-echo
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_string1: 'skip-{{ .grains.tf_seed.outputs.test_string1 }}'
+        - test_string2: '{{ .inputs.namespace }}-skip'
+        - test_number: 3
+        - test_bool: false
+      outputs:
+        - test_string1
+        - test_string2
+    depends-on: tf_seed
+
+  skip_blueprint_branch:
+    kind: blueprint
+    spec:
+      source:
+        store: test-spec2-public
+        path: blueprints/bp-inputs-echo.yaml
+      inputs:
+        - input1: '{{ .grains.skip_tf_noise.outputs.test_string1 }}'
+        - input2: '{{ .grains.skip_tf_noise.outputs.test_string2 }}'
+        - input3: 'skip-branch'
+      outputs:
+        - output1
+        - output2
+    depends-on: skip_tf_noise
+
+  skip_helm_shadow:
+    kind: helm
+    spec:
+      namespace: '{{ .inputs.namespace }}'
+      source:
+        store: test-spec2-public
+        path: helm/namespace
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - namespace.name: '{{ .inputs.namespace }}'
+        - serviceAccount1.name: 'skip-sa-1'
+        - serviceAccount2.name: 'skip-sa-2'
+    depends-on: tg_bridge
+
+  skip_shell_cleanup:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - name: skipped_cleanup
+              command: 'echo "skip cleanup branch"'
+    depends-on: skip_blueprint_branch

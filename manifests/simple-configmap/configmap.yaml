@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grain-flow-config
+  labels:
+    app: grain-flow
+
+data:
+  purpose: complex-grain-flow-test
+  owner: qa
