@@ -130,6 +130,7 @@ grains:
         path: blueprints/bp-inputs-echo.yaml
       inputs:
         - agent: '{{ .inputs.agent }}'
+        - should: '{{ .inputs.should }}'
         - input1: '{{ .grains.skip_tf_noise.outputs.test_string1 }}'
         - input2: '{{ .grains.skip_tf_noise.outputs.test_string2 }}'
         - input3: 'skip-branch'
@@ -186,6 +187,7 @@ grains:
         path: blueprints/bp-inputs-echo.yaml
       inputs:
         - agent: '{{ .inputs.agent }}'
+        - should: '{{ .inputs.should }}'
         - input1: '{{ .grains.tg_bridge.outputs.test_string1 }}'        
         - input2: '{{ .grains.skip_shell_cleanup.activities.deploy.commands.skipped_cleanup.outputs.output1 }}'
         - input3: '{{ .inputs.namespace }}'
