@@ -219,7 +219,7 @@ grains:
         deploy:
           commands:
             - name: report_flow
-              command: 'echo "bp1={{ .grains.bp_bridge.outputs.grain_output1 }} bp2={{ .grains.bp_bridge.outputs.grain_output2 }} helm={{ .grains.skip_helm_shadow.scripts.post-helm-install.outputs.testoutput }}.const={{ .grains.tg_bridge.outputs.test_const }}"'
+              command: 'echo "bp1={{ .grains.bp_bridge.outputs.grain_output1 }} bp2={{ .grains.bp_bridge.outputs.grain_output2 }} tf={{.grains.tg_bridge.outputs.test_string1}}. helm={{ .grains.skip_helm_shadow.scripts.post-helm-install.outputs.testoutput }}.const={{ .grains.tg_bridge.outputs.test_const }}"'
             - name: run_script
               command: './echo.sh'
     depends-on: bp_bridge, helm_namespace, skip_helm_shadow
