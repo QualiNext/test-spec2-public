@@ -1,0 +1,55 @@
+spec_version: 2
+description: Terraform + shell outputs, then print both
+
+inputs:
+  agent:
+    type: agent
+  message:
+    type: string
+    default: hello
+
+outputs:
+  terraform_output:
+    value: '{{ .grains.tf_one.outputs.output1 }}'
+  shell_output:
+    value: '{{ .grains.shell_one.activities.deploy.commands.set_output.outputs.output1 }}'
+
+grains:
+  tf_one:
+    kind: terraform
+    spec:
+      source:
+        store: test-spec2-public
+        path: terraform/simple-tf-module
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_input1: '{{ .inputs.message }}'
+        - test_input2: from-tf-grain
+      outputs:
+        - output1
+
+  shell_one:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - name: set_output
+              command: 'export bla="shell-{{ .inputs.message }}"; echo "shell output is empty"'
+              outputs:
+                - output1
+
+  print_both:
+    kind: shell
+    depends-on: tf_one, shell_one
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - name: print_outputs
+              command: 'echo "terraform={{ .grains.tf_one.outputs.output1 }} shell={{ .grains.shell_one.activities.deploy.commands.set_output.outputs.output1 }}"'
