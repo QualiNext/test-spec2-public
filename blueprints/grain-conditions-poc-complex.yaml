@@ -148,7 +148,7 @@ grains:
         channels:
           - type: group
             groups:
-              - grain-conditions-group
+              - grain-conditions
     spec:
       namespace: '{{ .inputs.namespace }}'
       source:
