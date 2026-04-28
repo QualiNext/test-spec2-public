@@ -28,6 +28,7 @@ grains:
         - test_input2: from-tf-grain
       outputs:
         - output1
+        - output2
 
   shell_one:
     kind: shell
@@ -52,4 +53,4 @@ grains:
         deploy:
           commands:
             - name: print_outputs
-              command: 'echo "terraform={{ .grains.tf_one.outputs.output1 }} shell={{ .grains.shell_one.activities.deploy.commands.set_output.outputs.output1 }}"'
+              command: 'echo "terraform={{ .grains.tf_one.outputs.output2 }} shell={{ .grains.shell_one.activities.deploy.commands.set_output.outputs.output1 }}"'
