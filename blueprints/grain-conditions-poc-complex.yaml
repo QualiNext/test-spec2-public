@@ -142,6 +142,13 @@ grains:
   skip_helm_shadow:
     kind: helm
     when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
+    condition:
+      - type: approval
+        message: 'This is a message to include in the approval request'
+        channels:
+          - type: group
+            groups:
+              - grain-conditions-group
     spec:
       namespace: '{{ .inputs.namespace }}'
       source:
