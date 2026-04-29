@@ -125,7 +125,7 @@ grains:
 
   skip_blueprint_branch:
     kind: blueprint
-    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
+    when: '{{ .grains.skip_tf_noise.is_active }}'
     spec:
       source:
         store: test-spec2-public
@@ -175,7 +175,7 @@ grains:
 
   skip_shell_cleanup:
     kind: shell
-    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
+    when: '{{ .grains.skip_blueprint_branch.is_active }}'
     spec:
       agent:
         name: '{{ .inputs.agent }}'
