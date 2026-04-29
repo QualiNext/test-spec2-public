@@ -59,6 +59,7 @@ grains:
 
   tg_bridge:
     kind: terragrunt
+    when: '{{ .grains.tf_seed.is_active }}'
     spec:
       source:
         store: test-spec2-public
