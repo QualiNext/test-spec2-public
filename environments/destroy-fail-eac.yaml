@@ -5,7 +5,7 @@ environment:
   state: active
   owner_email: yarin.k@quali.com
   spaces:
-  - YarinKeren
+  - YarinK
 
 inputs:
   my_store:
