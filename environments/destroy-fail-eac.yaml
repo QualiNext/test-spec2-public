@@ -3,14 +3,14 @@ spec_version: 2
 environment:
   environment_name: "destroy-fail-eac"
   state: active
-  owner_email: tomer.v@quali.com
+  owner_email: yarin.k@quali.com
   spaces:
-  - main
+  - YarinKeren
 
 inputs:
   my_store:
     type: string
-    default: tomer_1_blueprint
+    default: test-spec2-public
 
 # outputs:
 #   my_output_1:
@@ -26,7 +26,7 @@ grains:
         store: '{{ .inputs.my_store }}'
         path: 'terraform/destroy-fail'
       agent:
-        name: 'tomerv-eks'
+        name: 'aks-prod'
       # inputs:
       #   - my_input: "{{ .inputs.name }}"
   
