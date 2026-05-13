@@ -20,13 +20,6 @@ resource "aws_s3_bucket" "bucket" {
   bucket = var.name
 #   acl    = var.acl
   force_destroy = true
-
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-    A_NEW_TAG = "NEW TAG BUT WITH A"
-    A_NEWEST_TAG = "A_NEWEST_TAG"
-  }
 }
 
 # CREATE USER and POLICY test change456
