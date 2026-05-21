@@ -1,0 +1,6 @@
+resource "azurerm_ssh_public_key" "res-0" {
+  location = "eastus"
+  name = "demo--vm_key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDBvQ4ZnuAJJxpTLFmxWnaEckgPh9c6mPQTIlJzwKJbVD5c7pX3v+eSpMHjfjRhW3FghJBQCkl9SEuPtIUnpRQQlFNfWihfIxOKQK32zpUsXfKz7C3Q0qzIXL4/q8foEchwtMj+VAagWLZnH1s9YVRLmRqKcfif97v2laDI+OnMXHFpig4xkBfWIQATYIA60ao/kuJtic+nm5OKSOTwsEpdNVCZxuomd9EfJqDU+Rjb3dlaTbFzrGMrKl/e3Xk8JKBsSCelJJGFIjpe7ky/0zQDhsFO9oHcMT7VqbOsE8ahjwyF1EBQiCm/lTFgtoNsOi23P/GhXlfqyWeJWcSlgJwPT6owBlOHvp+16c28t1tiMl4LaM/1+WuG8a7+F08TPC8CWUK1lkaplTmBfVejzOQJVJJ+l7K7gJRUlC2ETc7ptqFXBd2QqzDIDozNZwbfBLejD3aGsrXRUNArIP7lLCQAgZi8+y1+GCDaGeSFsHu85hyOTxl7OfNTT0BWqwSlfyE= generated-by-azure"
+  resource_group_name = "demo-group"
+}
