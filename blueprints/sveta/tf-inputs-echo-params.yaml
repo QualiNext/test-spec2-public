@@ -3,6 +3,8 @@ spec_version: 2
 inputs:
   agent_name:
     type: agent
+  agent_name-gr-test:
+    type: agent
 
 outputs:
   tf_output:
