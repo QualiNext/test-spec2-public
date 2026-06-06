@@ -1,6 +1,10 @@
 spec_version: 2
 
 inputs:
+  my_mandatory_field:
+    type: string
+    required: true
+    description: "Must be filled during update"
   agent_name:
     type: agent
   agent_name-gr-test:
