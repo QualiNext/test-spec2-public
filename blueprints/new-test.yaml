@@ -1,10 +1,6 @@
 spec_version: 2-preview
 
 inputs:
-env_test-gr:
-    type: string
-    default: "val1"
-    description: "environment variable test"
   compute_service_name:
 #     type: string
     type: agent
@@ -23,6 +19,10 @@ env_test-gr:
     default: "8.0.26"
     description: "Version of RDS MySQL DB Engine. Default is 5.7"
   env_test:
+    type: string
+    default: "val1"
+    description: "environment variable test"
+  env_test-gr:
     type: string
     default: "val1"
     description: "environment variable test"
