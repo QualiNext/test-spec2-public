@@ -1,6 +1,10 @@
 spec_version: 2-preview
 
 inputs:
+  env_test-gr-123:
+    type: string
+    default: "val1"
+    description: "environment variable test"
   compute_service_name:
 #     type: string
     type: agent
@@ -21,11 +25,7 @@ inputs:
   env_test:
     type: string
     default: "val1"
-    description: "environment variable test"
-  env_test-gr-123:
-    type: string
-    default: "val1"
-    description: "environment variable test"
+    description: "environment variable test"  
 
 outputs:
   hello-world:
