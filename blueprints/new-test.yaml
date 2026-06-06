@@ -1,6 +1,10 @@
 spec_version: 2-preview
 
 inputs:
+  my_mandatory_field:
+    type: string
+    required: true
+    description: "Must be filled during update"
   env_test-gr-123:
     type: string
     default: "val1"
