@@ -22,7 +22,7 @@ inputs:
     type: string
     default: "val1"
     description: "environment variable test"
-  env_test-gr:
+  env_test-gr-123:
     type: string
     default: "val1"
     description: "environment variable test"
