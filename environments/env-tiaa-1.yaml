@@ -13,7 +13,7 @@ inputs:
     default: test1
   tag_version:
     type: string
-    default: 1.0.0
+    default: 2.0.0
 
 grains:
   run_base:
