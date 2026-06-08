@@ -1,0 +1,28 @@
+spec_version: 2
+description: Run blueprint
+environment:
+  environment_name: env-tiaa-1
+  state: active
+  owner_email: yakir.l@quali.com
+  spaces:
+    - Test
+
+inputs:
+  agent:
+    type: agent
+    default: test1
+  tag_version:
+    type: string
+    default: 1.0.0
+
+grains:
+  run_base:
+    kind: blueprint
+    spec:
+      source: 
+        store: iac-samples
+        path: blueprints/base.yaml
+        tag: '{{ .inputs.tag_version }}'
+      inputs:
+        - agent: '{{ .inputs.agent }}'
+        - tag_version: '{{ .inputs.tag_version }}'
