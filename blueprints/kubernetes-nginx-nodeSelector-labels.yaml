@@ -4,11 +4,11 @@ spec_version: 2-preview
 description: Blueprint with nginx kubernetes grain.
 
 inputs:
-  namespace:
-    type: string
-    display-style: normal
-    default: "default"
-    description: "Kubernetes namespace for sandbox to be ran in."
+  # namespace:
+  #   type: string
+  #   display-style: normal
+  #   default: "default"
+  #   description: "Kubernetes namespace for sandbox to be ran in."
   host_name:
     type: agent
     display-style: normal
@@ -20,7 +20,7 @@ grains:
     spec:
       source:
         path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
-      namespace: '{{ .inputs.namespace }}'
+      # namespace: '{{ .inputs.namespace }}'
       env-vars:
       - test: newValue
       tags:
@@ -33,4 +33,13 @@ grains:
           - labelK8SKey: labelK8SValue
           nodeSelector:
           - app: torque
+          tolerations:
+            - key: "dedicated" # Exact Match (Equal operator)
+              operator: "Equal"
+              value: "databases"
+              effect: "NoSchedule"
+            - key: "gpu-type" # Key-Only Match (Exists operator)
+              operator: "Exists"
+              effect: "NoExecute"
+              tolerationSeconds: 300
   
