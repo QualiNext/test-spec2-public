@@ -15,7 +15,35 @@ inputs:
     description: "execution host name"
 
 grains:
-  nginx:
+  nginx1:
+    kind: kubernetes
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
+      # namespace: '{{ .inputs.namespace }}'
+      env-vars:
+      - test: newValue
+      tags:
+        auto-tag: false
+      agent:
+        name: '{{.inputs.host_name}}'
+        service-account: "default"
+        kubernetes:
+          pod-labels:
+          - labelK8SKey: labelK8SValue
+          nodeSelector:
+          - app: torque
+          tolerations:
+            - key: "dedicated" # Exact Match (Equal operator)
+              operator: "Equal"
+              value: "databases"
+              effect: "NoSchedule"
+            - key: "gpu-type" # Key-Only Match (Exists operator)
+              operator: "Exists"
+              effect: "NoExecute"
+              tolerationSeconds: 300
+
+  nginx2:
     kind: kubernetes
     spec:
       source:
