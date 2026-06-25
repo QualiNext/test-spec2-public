@@ -27,8 +27,7 @@ grains:
         auto-tag: false
       agent:
         name: '{{.inputs.host_name}}'
-        service-account: "default"
-        use-storage: false
+        service-account: "default"        
         kubernetes:
           pod-labels:
           - labelK8SKey: labelK8SValue
@@ -56,8 +55,7 @@ grains:
         auto-tag: false
       agent:
         name: '{{.inputs.host_name}}'
-        service-account: "default"
-        use-storage: false
+        service-account: "default"        
         kubernetes:
           pod-labels:
           - labelK8SKey: labelK8SValue
