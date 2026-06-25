@@ -70,4 +70,41 @@ grains:
               operator: "Exists"
               effect: "NoExecute"
               tolerationSeconds: 300
-  
+
+  nginx3:
+    kind: kubernetes
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
+      # namespace: '{{ .inputs.namespace }}'
+      env-vars:
+      - test: newValue
+      tags:
+        auto-tag: false
+      agent:
+        name: '{{.inputs.host_name}}'
+        service-account: "default"        
+        kubernetes:
+          pod-labels:
+          - labelK8SKey: labelK8SValue
+          nodeSelector:
+          - app: torque
+
+  nginx4:
+    kind: kubernetes
+    spec:
+      source:
+        path: github.com/QualiNext/test-spec2-public//manifests/nginx/nginxmanifest.yaml
+      # namespace: '{{ .inputs.namespace }}'
+      env-vars:
+      - test: newValue
+      tags:
+        auto-tag: false
+      agent:
+        name: '{{.inputs.host_name}}'
+        service-account: "default"        
+        kubernetes:
+          pod-labels:
+          - labelK8SKey: labelK8SValue
+          nodeSelector:
+          - app: torque
