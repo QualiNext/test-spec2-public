@@ -13,6 +13,10 @@ inputs:
     type: agent
     display-style: normal
     description: "execution host name"
+  toleration_key:
+    default: exclude
+  toleration_value:
+    default: services
 
 grains:
   nginx1:
@@ -34,9 +38,9 @@ grains:
           nodeSelector:
           - app: torque
           tolerations:
-            - key: "dedicated" # Exact Match (Equal operator)
+            - key: '{{.inputs.toleration_key}}'
               operator: "Equal"
-              value: "databases"
+              value: '{{.inputs.toleration_value}}'
               effect: "NoSchedule"
             - key: "gpu-type" # Key-Only Match (Exists operator)
               operator: "Exists"
