@@ -67,12 +67,12 @@ grains:
           - app: torque
           tolerations:
             - key: "dedicated" # Exact Match (Equal operator)
-              operator: "Equal"
+              operator: "Equalbaddd"
               value: "databases"
               effect: "NoSchedule"
             - key: "gpu-type" # Key-Only Match (Exists operator)
               operator: "Exists"
-              effect: "NoExecute"
+              effect: "NoExecutebaddd"
               tolerationSeconds: 300
 
   nginx3:
