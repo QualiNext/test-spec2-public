@@ -10,11 +10,11 @@ workflow:
       overridable: true
 
 inputs:
-  azure_provider:
-    type: target
-    target-filters:
-      cloud-providers:
-        - azure
+  # azure_provider:
+  #   type: target
+  #   target-filters:
+  #     cloud-providers:
+  #       - azure
 
   azure_resource_type:
     type: string
@@ -28,7 +28,7 @@ inputs:
     depends-on: azure_provider, azure_resource_type
     style: multi-select
     resource-selector:
-      provider-name: '{{ .inputs.azure_provider }}'
+      # provider-name: '{{ .inputs.azure_provider }}'
       type: '{{ .inputs.azure_resource_type }}'
 
 outputs:

@@ -5,11 +5,11 @@ inputs:
   agent_name:
     type: agent
 
-  azure_provider:
-    type: target
-    target-filters:
-      cloud-providers:
-        - azure
+  # azure_provider:
+  #   type: target
+  #   target-filters:
+  #     cloud-providers:
+  #       - azure
 
   azure_resource_type:
     type: string
@@ -22,7 +22,7 @@ inputs:
     type: resource
     depends-on: azure_provider, azure_resource_type
     resource-selector:
-      provider-name: '{{ .inputs.azure_provider }}'
+      # provider-name: '{{ .inputs.azure_provider }}'
       type: '{{ .inputs.azure_resource_type }}'
   
   azure_multi_resource:
@@ -30,7 +30,7 @@ inputs:
     depends-on: azure_provider, azure_resource_type
     style: multi-select
     resource-selector:
-      provider-name: '{{ .inputs.azure_provider }}'
+      # provider-name: '{{ .inputs.azure_provider }}'
       type: '{{ .inputs.azure_resource_type }}'
 
 outputs:
