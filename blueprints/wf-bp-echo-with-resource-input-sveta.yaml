@@ -25,7 +25,7 @@ inputs:
   
   azure_multi_resource:
     type: resource
-    depends-on: azure_provider, azure_resource_type
+    depends-on: azure_resource_type # , azure_provider
     style: multi-select
     resource-selector:
       # provider-name: '{{ .inputs.azure_provider }}'

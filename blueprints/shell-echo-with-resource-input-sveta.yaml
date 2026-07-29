@@ -20,14 +20,14 @@ inputs:
   
   azure_single_resource:
     type: resource
-    depends-on: azure_provider, azure_resource_type
+    depends-on: azure_resource_type # , azure_provider
     resource-selector:
       # provider-name: '{{ .inputs.azure_provider }}'
       type: '{{ .inputs.azure_resource_type }}'
   
   azure_multi_resource:
     type: resource
-    depends-on: azure_provider, azure_resource_type
+    depends-on: azure_resource_type # , azure_provider
     style: multi-select
     resource-selector:
       # provider-name: '{{ .inputs.azure_provider }}'
