@@ -1,6 +1,14 @@
 spec_version: 2
 description: output intput
 
+workflow:  
+  scope: env
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 * * * *'
+      overridable: true
+
 inputs:
   azure_provider:
     type: target
@@ -15,13 +23,6 @@ inputs:
       - Microsoft.Storage/storageAccounts
       - Microsoft.Compute/virtualMachines
   
-  azure_single_resource:
-    type: resource
-    depends-on: azure_provider, azure_resource_type
-    resource-selector:
-      provider-name: '{{ .inputs.azure_provider }}'
-      type: '{{ .inputs.azure_resource_type }}'
-  
   azure_multi_resource:
     type: resource
     depends-on: azure_provider, azure_resource_type
@@ -31,11 +32,9 @@ inputs:
       type: '{{ .inputs.azure_resource_type }}'
 
 outputs:
-  azure_single_resource:
-    value: '{{ .inputs.azure_single_resource }}'
-  azure_single_resource_external_id:
-    value: '{{ .inputs.azure_single_resource | resource_external_id }}'
-  azure_multi_resource:
-    value: '{{ .inputs.azure_multi_resource }}'
+  azure_multi_resource_name:
+    value: '{{ .inputs.azure_multi_resource | resource_property: "name" }}'
   azure_multi_resource_external_ids:
-    value: '{{ .inputs.azure_multi_resource | resource_external_id }}'
+    value: '{{ .inputs.azure_multi_resource | resource_property: "external_id" }}'
+  azure_multi_resource_objects:
+    value: '{{ .inputs.azure_multi_resource | resource_object }}'

@@ -1,0 +1,53 @@
+spec_version: 2
+description: shell output resource inputs
+
+workflow:  
+  scope: env
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 * * * *'
+      overridable: true
+
+inputs:
+  agent_name:
+    type: agent
+
+  azure_provider:
+    type: target
+    target-filters:
+      cloud-providers:
+        - azure
+
+  azure_resource_type:
+    type: string
+    default: Microsoft.Storage/storageAccounts
+    allowed-values:
+      - Microsoft.Storage/storageAccounts
+      - Microsoft.Compute/virtualMachines
+  
+  azure_multi_resource:
+    type: resource
+    depends-on: azure_provider, azure_resource_type
+    style: multi-select
+    resource-selector:
+      provider-name: '{{ .inputs.azure_provider }}'
+      type: '{{ .inputs.azure_resource_type }}'
+
+outputs:
+  output_multi:
+    value: '{{ .grains.echo.activities.deploy.commands.echo_multi.outputs.output1 }}'
+
+grains:
+  echo:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent_name}}'
+      activities:
+        deploy:
+          commands:
+            - name: 'echo_multi'
+              command: 'export output1=''{{ .inputs.azure_multi_resource | resource_property: "external_id" }}''; echo $output1;'
+              outputs:
+                - output1
