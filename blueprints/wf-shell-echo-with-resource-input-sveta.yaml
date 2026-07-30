@@ -48,6 +48,6 @@ grains:
         deploy:
           commands:
             - name: 'echo_multi'
-              command: 'export output1=''{{ .inputs.azure_multi_resource | resource_property: "external_id" }}''; echo $output1;'
+              command: 'export output1=''{{ .inputs.azure_multi_resource | resource_property: "external_id" }}''; echo $output1'
               outputs:
                 - output1
