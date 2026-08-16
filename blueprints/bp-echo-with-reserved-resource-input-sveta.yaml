@@ -21,6 +21,7 @@ inputs:
     resource-selector:
       # provider-name: '{{ .inputs.azure_provider }}'
       type: '{{ .inputs.azure_resource_type }}'
+      reservable-only: true
   
   azure_multi_resource:
     type: resource
@@ -29,6 +30,7 @@ inputs:
     resource-selector:
       # provider-name: '{{ .inputs.azure_provider }}'
       type: '{{ .inputs.azure_resource_type }}'
+      reservable-only: true
 
 resources:
   azure_single_resource:
