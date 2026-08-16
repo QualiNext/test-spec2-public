@@ -1,0 +1,47 @@
+spec_version: 2
+description: output intput
+
+inputs:
+  # azure_provider:
+  #   type: target
+  #   target-filters:
+  #     cloud-providers:
+  #       - azure
+
+  azure_resource_type:
+    type: string
+    default: Microsoft.Storage/storageAccounts
+    allowed-values:
+      - Microsoft.Storage/storageAccounts
+      - Microsoft.Compute/virtualMachines
+  
+  azure_single_resource:
+    type: resource
+    depends-on: azure_resource_type # , azure_provider
+    resource-selector:
+      # provider-name: '{{ .inputs.azure_provider }}'
+      type: '{{ .inputs.azure_resource_type }}'
+  
+  azure_multi_resource:
+    type: resource
+    depends-on: azure_resource_type # , azure_provider
+    style: multi-select
+    resource-selector:
+      # provider-name: '{{ .inputs.azure_provider }}'
+      type: '{{ .inputs.azure_resource_type }}'
+
+resources:
+  azure_single_resource:
+    reference: '{{ .inputs.azure_single_resource }}'
+  azure_multi_resource:
+    reference: '{{ .inputs.azure_multi_resource }}'
+
+outputs:
+  azure_single_resource_object:
+    value: '{{ .inputs.azure_single_resource | resource_object }}'
+  azure_single_resource:
+    value: '{{ .resources.azure_single_resource }}'
+  azure_multi_resource_objects:
+    value: '{{ .inputs.azure_multi_resource | resource_object }}'
+  azure_multi_resource:
+    value: '{{ .resources.azure_multi_resource }}'
