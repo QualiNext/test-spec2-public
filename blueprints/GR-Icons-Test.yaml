@@ -1,5 +1,5 @@
 spec_version: 2
-description: Install Ubuntu 26.04 LTS Server on multiple bare-metal UCSX Intersight-managed servers in parallel. Servers are selected via multi-select; each gets a unique IP, custom ISO with GRUB-embedded autoinstall, and server profile. All installs run concurrently.
+description: This is a description
 metadata:
   blueprint-labels:
     - key: Provider
