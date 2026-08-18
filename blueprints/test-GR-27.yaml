@@ -13,7 +13,7 @@ metadata:
       value: Ubuntu
     - key: Platform
       value: Blade-Series
-  display-name: BMaaS Ubuntu 26.04 LTS (Dual vNIC, OS VLAN Tag)
+  display-name: GR-Icons-Test
   icon:
     path: ../icons/dog.png
 customization:
