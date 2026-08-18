@@ -1,0 +1,46 @@
+spec_version: 2
+description: Resource inputs over the small custom-resource pools, for verifying the Torque UI resource input port
+
+inputs:
+  custom_resource_type:
+    type: string
+    default: demo_type
+    allowed-values:
+      - demo_type
+      - demo_tenant_type
+
+  single_reservable:
+    type: resource
+    depends-on: custom_resource_type
+    resource-selector:
+      type: '{{ .inputs.custom_resource_type }}'
+      reservable-only: true
+
+  multi_reservable:
+    type: resource
+    depends-on: custom_resource_type
+    style: multi-select
+    resource-selector:
+      type: '{{ .inputs.custom_resource_type }}'
+      reservable-only: true
+
+  single_not_reservable:
+    type: resource
+    depends-on: custom_resource_type
+    resource-selector:
+      type: '{{ .inputs.custom_resource_type }}'
+      reservable-only: false
+
+resources:
+  single_reservable:
+    reference: '{{ .inputs.single_reservable }}'
+  multi_reservable:
+    reference: '{{ .inputs.multi_reservable }}'
+
+outputs:
+  single_reservable:
+    value: '{{ .resources.single_reservable }}'
+  multi_reservable:
+    value: '{{ .resources.multi_reservable }}'
+  single_not_reservable:
+    value: '{{ .inputs.single_not_reservable }}'
