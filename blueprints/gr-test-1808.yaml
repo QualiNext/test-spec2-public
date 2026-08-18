@@ -1,66 +1,12 @@
 spec_version: 2
 description: This is a description
 metadata:
-  blueprint-labels:
-    - key: Provider
-      value: Cisco
-    - key: Category
-      value: BMaaS
-    - key: Validated
-    - key: Version
-      value: '26.04'
-    - key: OS
-      value: Ubuntu
-    - key: Platform
-      value: Blade-Series
   display-name: gr-test-1808
   icon:
     path: ../icons/dog.png
 customization:
   launch-form:
-    steps:
-      tags:
-        visible: false
-      workflows:
-        visible: false
-      ownersAndCollaborators:
-        visible: false
-    inputs:
-      - name: Intersight
-      - name: Management Server
-      - name: Cluster Servers
-    sections:
-      - name: Server Configuration
-        description: Boot disk is auto-detected; override only if needed.
-        inputs:
-          - name: Boot Disk Type
-      - name: OS Configuration
-        inputs:
-          - name: OS ISO URL
-          - name: Hostname Prefix
-          - name: OS Username
-          - name: OS Password
-      - name: Network Configuration
-        description: Management subnet is required. IPs are auto-allocated per server. VLAN fields are optional.
-        inputs:
-          - name: Management Auto Subnet
-          - name: Gateway
-          - name: DNS Servers
-          - name: VLAN ID
-          - name: OS VLAN Tagging
-          - name: OS VLAN ID
-            visible: '{% if inputs.["OS VLAN Tagging"] == "true" %} true {% else %} false {% endif %}'
-          - name: IP Address
-          - name: IMC IP Address
-          - name: IMC VLAN ID
-          - name: NTP Server
-          - name: vNIC A VLANs
-          - name: vNIC B VLANs
-      - name: Advanced Settings
-        inputs:
-          - name: Organization Name
-          - name: OS HTTP Proxy
-          - name: OS No Proxy
+  
   layout:
     cards:
       - name: stack1
@@ -69,36 +15,12 @@ customization:
         height: 2.7
         items:
           - name: server_info
-            display_name: '{{ environment.name }}'
-            status: '{% if environment.status == "Active" %}positive{% elsif environment.status == "Ended" or environment.status == "Force Ended" %}inactive{% elsif environment.status == "Launching" or environment.status == "Terminating" or environment.status == "Updating" %}info{% else %}warning{% endif %}'
+            display_name: env
+            status: status
             type: icon-card
             image: ../icons/dog.png
             data:
               - name: Space
-                value: '{{ environment.space }}'
+                value: env
               - name: Server Count
-                value: '{{ outputs["Server Count"] }}'
-          - name: drift
-            display_name: Deployment Status
-            type: deployment-card
-            height: 1
-      - name: details
-        display_name: Access Details
-        type: data-card
-        height: 2.7
-        data:
-          - name: Space
-            value: '{{ environment.space }}'
-          - name: OS Access
-            value: ssh {{ inputs["OS Username"]}}@{{ outputs["Server IP"] }}
-          - name: Hostnames
-            value: '{{ outputs["Hostnames"] }}'
-          - name: OS Password
-            value: '{{ outputs["OS Password"] }}'
-          - name: Profile Names
-            value: '{{ outputs["Profile Names"] }}'
-      - name: Solution
-        type: blueprint-card
-        height: 2.7
-        size: 2
-        blueprint: '{{ environment.blueprint.name }}'
+                value: env
