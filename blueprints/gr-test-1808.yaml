@@ -3,7 +3,7 @@ description: This is a description
 metadata:
   display-name: gr-test-1808
   icon:
-    path: ../icons/dog.png
+    path: ../testing/icons/dog.png
 customization:
   launch-form:
   
@@ -18,7 +18,7 @@ customization:
             display_name: env
             status: status
             type: icon-card
-            image: ../icons/dog.png
+            image: ../testing/icons/dog.png
             data:
               - name: Space
                 value: env
