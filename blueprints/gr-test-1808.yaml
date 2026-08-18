@@ -3,7 +3,7 @@ description: This is a description
 metadata:
   display-name: gr-test-1808
   icon:
-    path: ../testing/icons/dog.png
+    path: ../testing/icons/notdog.png
 customization:
   launch-form:
   
