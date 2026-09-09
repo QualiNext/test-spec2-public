@@ -6,9 +6,6 @@ workflow:
   labels-selector: rg-pattern-test
   triggers:
     - type: manual
-    - type: cron
-      cron: '0 3 * * *'
-      overridable: true
 
 inputs:
   agent:
