@@ -1,0 +1,52 @@
+spec_version: 2
+description: Launch-time workflow whose inputs carry Liquid-authored patterns, for testing
+pattern resolution in the launch form's Workflows step.
+
+workflow:
+  scope: env_resource
+  labels-selector: rg-pattern-test
+  resource-types: aws_instance
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 3 * * *'
+      overridable: true
+
+inputs:
+  agent:
+    type: agent
+
+  size:
+    type: string
+    description: Names the parameter that backs the max_users pattern.
+    allowed-values:
+      - small
+      - large
+    default: large
+
+  max_users:
+    type: string
+    description: Pattern comes from the parameter that size names. The default is valid at
+'large' and invalid at 'small'.
+    depends-on: size
+    default: '1234'
+    pattern: '{% assign pat_size = .inputs.size %}{{ .params[pat_size] }}'
+    validation-description: Too many users for this size.
+
+  region:
+    type: string
+    description: Plain Liquid pattern with no dependency, so it resolves once and never
+changes.
+    default: eu-west-1
+    pattern: '{{ .params.region_pattern }}'
+
+grains:
+  noop:
+    kind: ansible
+    spec:
+      built-in: true
+      source:
+        path:
+https://github.com/QualiTorque/torque-actions.git//resource/aws-power-off-ec2-tf.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
