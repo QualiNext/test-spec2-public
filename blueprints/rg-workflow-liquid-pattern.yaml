@@ -1,6 +1,5 @@
 spec_version: 2
-description: Launch-time workflow whose inputs carry Liquid-authored patterns, for testing
-pattern resolution in the launch form's Workflows step.
+description: Launch-time workflow whose inputs carry Liquid-authored patterns, for testing pattern resolution in the launch form's Workflows step.
 
 workflow:
   scope: env_resource
@@ -26,8 +25,7 @@ inputs:
 
   max_users:
     type: string
-    description: Pattern comes from the parameter that size names. The default is valid at
-'large' and invalid at 'small'.
+    description: Pattern comes from the parameter that size names. The default is valid at 'large' and invalid at 'small'.
     depends-on: size
     default: '1234'
     pattern: '{% assign pat_size = .inputs.size %}{{ .params[pat_size] }}'
@@ -35,8 +33,7 @@ inputs:
 
   region:
     type: string
-    description: Plain Liquid pattern with no dependency, so it resolves once and never
-changes.
+    description: Plain Liquid pattern with no dependency, so it resolves once and never changes.
     default: eu-west-1
     pattern: '{{ .params.region_pattern }}'
 
@@ -46,7 +43,6 @@ grains:
     spec:
       built-in: true
       source:
-        path:
-https://github.com/QualiTorque/torque-actions.git//resource/aws-power-off-ec2-tf.yaml
+        path: https://github.com/QualiTorque/torque-actions.git//resource/aws-power-off-ec2-tf.yaml
       agent:
         name: '{{ .inputs.agent }}'
