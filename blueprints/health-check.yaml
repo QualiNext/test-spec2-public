@@ -3,6 +3,7 @@ description: Runs reachability health check
 
 workflow:
   scope: env
+  labels-selector: CML
   triggers:
     - type: manual
 
