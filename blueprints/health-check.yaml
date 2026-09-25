@@ -1,0 +1,22 @@
+spec_version: 2
+description: Runs reachability health check 
+
+workflow:
+  scope: env
+  triggers:
+    - type: manual
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  resource_check:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - 'echo "Checking connectivity.."'
